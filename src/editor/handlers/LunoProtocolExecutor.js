@@ -33,144 +33,130 @@ class LunoProtocolExecutor {
   }
 
   async execute(payloadText) {
-    if (!payloadText || typeof payloadText !== 'string' || !payloadText.trim()) {
-      return { success: false, error: 'Empty payload provided.' };
-    }
-
-    const app = this.app || globalThis.vibesApp;
-    const vfs = app && (app.vfs || app.virtualFileSystem);
-
-    // 1. Tokenize using ported LunoPayloadParser
-    const parser = globalThis.LunoPayloadParser;
-    if (!parser || typeof parser.parse !== 'function') {
-      throw new Error('[LunoProtocolExecutor] LunoPayloadParser is not available in global scope.');
-    }
-
-    const parsed = parser.parse(payloadText);
-    const files = parsed.files || [];
-    const serverScript = parsed.serverScript || '';
-    const hasContainers = files.length > 0 || Boolean(serverScript);
-
-    if (!hasContainers) {
-      return {
-        success: false,
-        error: 'No valid HTML containers (<script>, <style>, <template>, <svg>) were detected in payload.'
-      };
-    }
-
-    const localMutations = [];
-    const siblingFiles = [];
-    const summary = [];
-
-    // 2. Separate local Vibes mutations from external sibling project files
-    for (const f of files) {
-      if (this.isSiblingProjectFile(f.filePath)) {
-        siblingFiles.push(f);
-        summary.push({ path: f.filePath, mode: 'sibling-proxy-save', success: true });
-        continue;
+      if (!payloadText || typeof payloadText !== 'string' || !payloadText.trim()) {
+        return { success: false, error: 'Empty payload provided.' };
       }
 
-      const localPath = this.normalizeTargetFile(f.filePath);
-      const isSurgicalPatch = Boolean(f.methodSpec || f.action === 'patch' || f.action === 'delete');
+      const app = this.app || globalThis.vibesApp;
+      const vfs = app && (app.vfs || app.virtualFileSystem);
 
-      let finalContent = f.content || '';
+      const parser = globalThis.LunoPayloadParser;
+      if (!parser || typeof parser.parse !== 'function') {
+        throw new Error('[LunoProtocolExecutor] LunoPayloadParser is not available in global scope.');
+      }
 
-      if (isSurgicalPatch) {
-        if (!vfs) {
-          throw new Error('[LunoProtocolExecutor] VFS unavailable to retrieve base file for surgical patch: ' + localPath);
+      const parsed = parser.parse(payloadText);
+      const files = parsed.files || [];
+      const serverScript = parsed.serverScript || '';
+      const hasContainers = files.length > 0 || Boolean(serverScript);
+
+      if (!hasContainers) {
+        return {
+          success: false,
+          error: 'No valid HTML containers (<script>, <style>, <template>, <svg>) were detected in payload.'
+        };
+      }
+
+      const localMutations = [];
+      const siblingFiles = [];
+      const summary = [];
+
+      for (const f of files) {
+        if (this.isSiblingProjectFile(f.filePath)) {
+          siblingFiles.push(f);
+          summary.push({ path: f.filePath, mode: 'sibling-project', success: true });
+          continue;
         }
 
-        let existingContent = '';
-        try {
-          existingContent = await vfs.readFile(localPath);
-        } catch (e) {
-          try {
-            existingContent = await vfs.readFile('vibes/' + localPath);
-          } catch (e2) {}
-        }
+        const localPath = this.normalizeTargetFile(f.filePath);
+        const isSurgicalPatch = Boolean(f.methodSpec || f.action === 'patch' || f.action === 'delete');
 
-        if (!existingContent || !existingContent.trim()) {
-          throw new Error('[LunoProtocolExecutor] Cannot patch member "' + (f.methodSpec || localPath) + '": Base file "' + localPath + '" not found in Vibes VFS.');
-        }
+        let finalContent = f.content || '';
 
-        const patcher = globalThis.LunoClassPatcher || globalThis.ClientJSClassPatcher;
-        if (!patcher) {
-          throw new Error('[LunoProtocolExecutor] AST Patcher unavailable in client runtime.');
-        }
+        if (isSurgicalPatch) {
+          let existingContent = '';
+          if (vfs && typeof vfs.readFile === 'function') {
+            try {
+              existingContent = await vfs.readFile(localPath);
+            } catch (e) {
+              try {
+                existingContent = await vfs.readFile('vibes/' + localPath);
+              } catch (e2) {}
+            }
+          } else if (app && app.inMemoryFileStore && app.inMemoryFileStore.has(localPath)) {
+            existingContent = app.inMemoryFileStore.get(localPath);
+          }
 
-        if (f.action === 'delete') {
-          finalContent = patcher.deleteMethodInSource(existingContent, f.methodSpec || localPath);
+          if (!existingContent || !existingContent.trim()) {
+            throw new Error('[LunoProtocolExecutor] Cannot patch member "' + (f.methodSpec || localPath) + '": Base file "' + localPath + '" not found.');
+          }
+
+          const patcher = globalThis.LunoClassPatcher || globalThis.ClientJSClassPatcher;
+          if (!patcher) {
+            throw new Error('[LunoProtocolExecutor] AST Patcher unavailable in client runtime.');
+          }
+
+          if (f.action === 'delete') {
+            finalContent = patcher.deleteMethodInSource(existingContent, f.methodSpec || localPath);
+          } else {
+            finalContent = patcher.patchMethodInSource(existingContent, f.methodSpec || localPath, f.content, { allowInsert: true });
+          }
+
+          summary.push({ path: localPath, target: f.methodSpec, mode: 'surgical-patch', success: true });
         } else {
-          finalContent = patcher.patchMethodInSource(existingContent, f.methodSpec || localPath, f.content, { allowInsert: true });
+          summary.push({ path: localPath, mode: 'full-file', success: true });
         }
 
-        summary.push({ path: localPath, target: f.methodSpec, mode: 'surgical-patch', success: true });
-      } else {
-        summary.push({ path: localPath, mode: 'full-file', success: true });
+        localMutations.push({
+          path: localPath,
+          content: finalContent,
+          originalFile: f
+        });
       }
 
-      localMutations.push({
-        path: localPath,
-        content: finalContent,
-        originalFile: f
-      });
-    }
-
-    // 3. Apply local mutations directly to Vibes VFS
-    let localSavedCount = 0;
-    if (vfs && localMutations.length > 0) {
+      let localSavedCount = 0;
       for (const mut of localMutations) {
         try {
-          await vfs.writeFile(mut.path, mut.content);
+          if (vfs && typeof vfs.writeFile === 'function') {
+            await vfs.writeFile(mut.path, mut.content);
+          }
+          if (app && app.inMemoryFileStore) {
+            app.inMemoryFileStore.set(mut.path, mut.content);
+          }
           localSavedCount++;
         } catch (writeErr) {
-          console.error('[LunoProtocolExecutor] Local write failed for ' + mut.path, writeErr);
-          throw writeErr;
+          console.error('[LunoProtocolExecutor] Write failed for ' + mut.path, writeErr);
         }
       }
-    }
 
-    // 4. Proxy sibling project files and privileged server scripts to Luno daemon (port 8080)
-    let siblingSavedCount = 0;
-    if (siblingFiles.length > 0 || serverScript) {
-      try {
-        const proxyPayload = {
-          files: siblingFiles,
-          serverScript: serverScript
-        };
-
-        const res = await fetch('http://127.0.0.1:8080/api/save', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-Luno-Client': '1' },
-          body: JSON.stringify(proxyPayload)
-        });
-
-        if (res.ok) {
-          const proxyData = await res.json();
-          siblingSavedCount = proxyData.count || siblingFiles.length;
+      let siblingSavedCount = 0;
+      if (siblingFiles.length > 0 || serverScript) {
+        try {
+          if (typeof LunoApiClient !== 'undefined' && LunoApiClient.savePayload) {
+            const proxyData = await LunoApiClient.savePayload({ files: siblingFiles, serverScript: serverScript });
+            siblingSavedCount = (proxyData && proxyData.modifiedCount) || siblingFiles.length;
+          }
+        } catch (proxyErr) {
+          console.warn('[LunoProtocolExecutor] Sibling save notice:', proxyErr.message);
         }
-      } catch (proxyErr) {
-        console.warn('[LunoProtocolExecutor] Daemon proxy notice (port 8080 offline or unlinked):', proxyErr.message);
       }
+
+      const totalModified = localSavedCount + siblingSavedCount;
+      const msg = `Applied ${localSavedCount} file(s) in Vibes` + (siblingSavedCount > 0 ? ` + ${siblingSavedCount} sibling file(s).` : '.');
+
+      if (app && app.uiManager && typeof app.uiManager.setStatus === 'function') {
+        app.uiManager.setStatus(msg, false, 4000);
+      } else {
+        console.log('[LunoProtocolExecutor] ' + msg);
+      }
+
+      return {
+        success: true,
+        modifiedCount: totalModified,
+        summary: summary,
+        message: msg
+      };
     }
-
-    const totalModified = localSavedCount + siblingSavedCount;
-    const msg = `Applied ${localSavedCount} file(s) locally in Vibes` + (siblingSavedCount > 0 ? ` + ${siblingSavedCount} sibling file(s) via Luno daemon.` : '.');
-
-    if (app && app.uiManager && typeof app.uiManager.showToast === 'function') {
-      app.uiManager.showToast(msg, 'success');
-    } else {
-      console.log('[LunoProtocolExecutor] ' + msg);
-    }
-
-    return {
-      success: true,
-      modifiedCount: totalModified,
-      summary: summary,
-      message: msg
-    };
-  }
-
   static detectFileReplace(text) {
       return UnifiedProtocolExecutor.detectFileReplace(text);
     }

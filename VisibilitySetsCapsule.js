@@ -1,4 +1,23 @@
 class VisibilitySetsCapsule {
+  static _set_vibes_core() {
+    return {
+      "name": "vibes-core",
+      "files": {
+        "/vibes/src/editor/ProjectEditorApp.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/handlers/AppActionHandler.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/handlers/AppProtocolHandler.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/handlers/LunoProtocolExecutor.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/handlers/UnifiedProtocolExecutor.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/handlers/AppUIManager.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/managers/ActionInitializer.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/managers/TabOrchestrator.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/ui/fileTree/ProjectFilesManager.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/src/editor/ui/fileTree/ProjectFilesPromptBundleBuilder.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+        "/vibes/VisibilitySetsCapsule.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 }
+      }
+    };
+  }
+
 
   static _set_uioverhaul() {
     return {

@@ -109,15 +109,11 @@
     "src/playground/VibesPlaygroundDirector.js",
     "src/playground/VisibilityStripperDemo.js",
     "src/protocol/BlockableWriteGate.js",
-    "src/protocol/ClientJSClassPatcher.js",
     "src/protocol/CodeFormatter.js",
-    "src/protocol/CodeParser.js",
     "src/protocol/DirectApiWriteAuditor.js",
     "src/protocol/DocumentToCapsuleWalker.js",
     "src/protocol/FailureLogger.js",
     "src/protocol/HTMLDependencyScanner.js",
-    "src/protocol/LunoClassPatcher.js",
-    "src/protocol/LunoPayloadParser.js",
     "src/protocol/ManagedClassValidator.js",
     "src/protocol/ManagedManifestLoader.js",
     "src/protocol/ManagedMetadata.js",
@@ -138,7 +134,8 @@
     "src/tools/runner/RunInPageRunner.js",
     "src/tools/testing/ReceiveCodeTester.js",
     "src/tools/browser/NativeProjectBrowser.js",
-    "src/editor/ui/fileTree/ProjectBrowserWebRootOpener.js"
+    "src/editor/ui/fileTree/ProjectBrowserWebRootOpener.js",
+    "src/protocol/CodeParser.js"
   ],
   "library": [
     "DropdownMenu.js",
@@ -155,7 +152,7 @@
     "https://cdn.jsdelivr.net/npm/acorn@8.11.3/dist/acorn.min.js"
   ],
   "bundle": "dist/vibes-bundle.js",
-  "processedCountSinceCheckpoint": 13,
+  "processedCountSinceCheckpoint": 2,
   "changedMethods": {
     "Luno/core/LunoServer.js": "2026-09-27T04:14:55.766Z",
     "Luno/app/LunoThemeEngine.js": "2026-09-27T04:14:55.766Z",
@@ -163,6 +160,34 @@
     "src/editor/ui/fileTree/ProjectBrowserWebRootOpener.js": "2026-09-27T04:52:01.492Z",
     "src/editor/handlers/AppUIManager.js": "2026-09-27T04:14:55.766Z",
     "src/editor/ui/fileTree/ProjectFloatingTreeLauncher.js": "2026-09-27T04:52:01.492Z",
-    "Luno/app/LunoSettings.js": "2026-09-27T04:17:09.409Z"
+    "Luno/app/LunoSettings.js": "2026-09-27T04:17:09.409Z",
+    "LunoParser/LunoTestRunner.js": "2026-09-27T18:45:43.066Z",
+    "src/editor/handlers/LunoProtocolExecutor.js": "2026-09-27T18:45:43.066Z"
+  },
+  "lastCheckpointTime": "2026-09-27T06:09:33.584Z",
+  "pendingCheckpointDescription": "Clean working tree",
+  "visibilitySets": {
+    "vibes-core": [
+      "src/editor/ProjectEditorApp.js",
+      "src/editor/handlers/AppActionHandler.js",
+      "src/editor/handlers/AppProtocolHandler.js",
+      "src/editor/handlers/LunoProtocolExecutor.js",
+      "src/editor/handlers/UnifiedProtocolExecutor.js",
+      "src/editor/handlers/AppUIManager.js",
+      "src/editor/managers/ActionInitializer.js",
+      "src/editor/managers/TabOrchestrator.js",
+      "src/editor/ui/fileTree/ProjectFilesManager.js",
+      "src/editor/ui/fileTree/ProjectFilesPromptBundleBuilder.js",
+      "src/editor/ui/fileTree/ProjectVisibilityToolbarTools.js",
+      "VisibilitySetsCapsule.js"
+    ],
+    "vibes-protocol": [
+      "src/editor/handlers/AppProtocolHandler.js",
+      "src/editor/handlers/LunoProtocolExecutor.js",
+      "src/editor/handlers/UnifiedProtocolExecutor.js",
+      "src/protocol/CodeParser.js",
+      "src/protocol/ProjectUnpacker.js",
+      "src/editor/comms/VibesPatchStore.js"
+    ]
   }
 }
