@@ -154,5 +154,15 @@
   "thirdParty": [
     "https://cdn.jsdelivr.net/npm/acorn@8.11.3/dist/acorn.min.js"
   ],
-  "bundle": "dist/vibes-bundle.js"
+  "bundle": "dist/vibes-bundle.js",
+  "processedCountSinceCheckpoint": 13,
+  "changedMethods": {
+    "Luno/core/LunoServer.js": "2026-09-27T04:14:55.766Z",
+    "Luno/app/LunoThemeEngine.js": "2026-09-27T04:14:55.766Z",
+    "Luno/app/OutboxPromptBox.js": "2026-09-27T04:14:55.766Z",
+    "src/editor/ui/fileTree/ProjectBrowserWebRootOpener.js": "2026-09-27T04:52:01.492Z",
+    "src/editor/handlers/AppUIManager.js": "2026-09-27T04:14:55.766Z",
+    "src/editor/ui/fileTree/ProjectFloatingTreeLauncher.js": "2026-09-27T04:52:01.492Z",
+    "Luno/app/LunoSettings.js": "2026-09-27T04:17:09.409Z"
+  }
 }

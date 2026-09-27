@@ -465,39 +465,54 @@ class AppUIManager {
           'aria-label': 'Open local directory',
           style: { display: supportsBrowserWorkspace ? '' : 'none' },
           onclick: async () => {
-            const pfm = this.app && this.app.projectFilesManager;
-            if (!pfm || typeof pfm.openBrowserWebRootFromPicker !== 'function') {
-              this.setStatus('Browser workspace opener is not available.', true);
-              return;
+            // Pre-load ProjectBrowserWebRootOpener if not in global scope
+            if (typeof ProjectBrowserWebRootOpener === 'undefined' && this.app?._loadClassicScriptOnce) {
+              try {
+                await this.app._loadClassicScriptOnce('/vibes/src/editor/ui/fileTree/ProjectBrowserWebRootOpener.js');
+              } catch (e) {}
             }
-            this.setStatus('Choose a folder to open…');
-            try {
-              const result = await pfm.openBrowserWebRootFromPicker({
-                chooseApp: true,
-              });
-              if (result && result.ok === false) {
-                if (!result.cancelled) {
-                  this.setStatus(
-                    'Could not open folder: ' + (result.reason || 'unknown'),
-                    true
+
+            const pfm = this.app && this.app.projectFilesManager;
+            if (pfm && typeof pfm.openBrowserWebRootFromPicker === 'function') {
+              this.setStatus('Choose a folder to open…');
+              try {
+                const result = await pfm.openBrowserWebRootFromPicker({
+                  chooseApp: true,
+                });
+                if (result && result.ok === false) {
+                  if (!result.cancelled) {
+                    this.setStatus(
+                      'Could not open folder: ' + (result.reason || 'unknown'),
+                      true
+                    );
+                  }
+                  return;
+                }
+                this.setStatus('Folder opened.');
+                if (this.app.tabManager) {
+                  const pbTab = Array.from(this.app.tabManager.tabs.values()).find(
+                    (t) => t.id === 'project-browser-tab'
                   );
+                  if (pbTab) this.app.tabOrchestrator.removeTab(pbTab.id);
                 }
                 return;
+              } catch (error) {
+                this.setStatus('Open failed: ' + error.message, true);
+                return;
               }
-              this.setStatus('Folder opened.');
-              if (this.app.tabManager) {
-                const pbTab = Array.from(this.app.tabManager.tabs.values()).find(
-                  (t) => t.id === 'project-browser-tab'
-                );
-                if (pbTab) this.app.tabOrchestrator.removeTab(pbTab.id);
-              }
-            } catch (error) {
-              this.setStatus(
-                'Open failed: ' +
-                  (error && error.message ? error.message : String(error)),
-                true
-              );
             }
+
+            // Resilient fallback: direct ProjectBrowserWebRootOpener call
+            if (typeof ProjectBrowserWebRootOpener !== 'undefined') {
+              this.setStatus('Choose a folder to open…');
+              const res = await ProjectBrowserWebRootOpener.openWebRoot(this.app);
+              if (res && res.ok !== false) {
+                this.setStatus('Folder opened.');
+              }
+              return;
+            }
+
+            this.setStatus('Browser workspace opener is not available.', true);
           },
         },
         '📂 Open Folder'
@@ -764,7 +779,6 @@ class AppUIManager {
         if (this._setupToolbarDragging) this._setupToolbarDragging();
       }, 100);
     }
-
   setTeleporterStatus(isConnected) {
       if (!this.ui.connectionDot) {
         let existing =

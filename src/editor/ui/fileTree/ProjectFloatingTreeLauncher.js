@@ -98,102 +98,105 @@ class ProjectFloatingTreeLauncher {
   }
 
   renderFloatingFileTreeLauncher(manager = this.manager) {
-      const state = this.ensureFloatingFileTreeState(manager);
+    const state = this.ensureFloatingFileTreeState(manager);
 
-      if (!state.launcherDialog || !state.launcherContent?.isConnected) {
-        this.installOpenDirectoriesStyles();
+    if (!state.launcherDialog || !state.launcherContent?.isConnected) {
+      this.installOpenDirectoriesStyles();
 
-        const addDirBtn = makeElement(
-          "button",
-          {
-            className: "od-add-btn",
-            title: "Open a directory",
-            onclick: async (e) => {
-              e.stopPropagation();
-              if (typeof this._handleAddDirectoryClick === 'function') {
-                this._handleAddDirectoryClick(manager, addDirBtn);
-              } else {
-                addDirBtn.disabled = true;
-                addDirBtn.textContent = "…";
-                try {
-                  await this.pickExternalFolderAndOpenFileTreeDialog(manager);
-                } finally {
-                  addDirBtn.disabled = false;
-                  addDirBtn.textContent = "＋";
-                  this.renderFloatingFileTreeLauncher(manager);
-                }
+      const addDirBtn = makeElement(
+        "button",
+        {
+          className: "od-add-btn",
+          title: "Open a directory",
+          onclick: async (e) => {
+            e.stopPropagation();
+            if (typeof this._handleAddDirectoryClick === 'function') {
+              this._handleAddDirectoryClick(manager, addDirBtn);
+            } else {
+              addDirBtn.disabled = true;
+              addDirBtn.textContent = "…";
+              try {
+                await this.pickExternalFolderAndOpenFileTreeDialog(manager);
+              } finally {
+                addDirBtn.disabled = false;
+                addDirBtn.textContent = "＋";
+                this.renderFloatingFileTreeLauncher(manager);
               }
             }
-          },
-          "＋"
-        );
-
-        addDirBtn.addEventListener('mouseover', (e) => {
-          if (window.GlowingTooltip) {
-            GlowingTooltip.show(e.currentTarget, "Open and mount a new project directory from your computer's local storage.", { color: [0, 191, 165] });
           }
-        });
-        addDirBtn.addEventListener('mouseout', () => {
-          if (window.GlowingTooltip) GlowingTooltip.hide();
-        });
+        },
+        "＋"
+      );
 
-        state.status = makeElement(
-          "div",
-          { className: "od-status" },
-          "No directories open yet."
-        );
+      addDirBtn.addEventListener('mouseover', (e) => {
+        if (window.GlowingTooltip) {
+          GlowingTooltip.show(e.currentTarget, "Open and mount a new project directory from your computer's local storage.", { color: [0, 191, 165] });
+        }
+      });
+      addDirBtn.addEventListener('mouseout', () => {
+        if (window.GlowingTooltip) GlowingTooltip.hide();
+      });
 
-        const header = makeElement("div", { className: "od-header" }, addDirBtn);
-        
-        state.rootsList = makeElement("div", { className: "od-list", style: { maxHeight: '50vh', overflowY: 'auto' } });
+      state.status = makeElement(
+        "div",
+        { className: "od-status" },
+        "No directories open yet."
+      );
 
-        state.launcherContent = makeElement(
-          "div",
-          { className: "od-root" },
-          header,
-          state.status,
-          state.rootsList
-        );
+      const header = makeElement("div", { className: "od-header" }, addDirBtn);
 
-        state.launcherDialog = UITools.makeDialog({
-          title: "📂 Open Directories",
-          contentElement: state.launcherContent,
-          size: [315, "auto"],
-          position: [20, Math.max(20, window.innerHeight - 440)], 
-          noPadding: false,
-          allowMaximize: false,
-          stateId: 'vibes-directories-launcher' 
-        });
-      }
+      state.rootsList = makeElement("div", { className: "od-list", style: { maxHeight: '50vh', overflowY: 'auto' } });
 
-      const stores = manager?.app?.workspaceFileStores;
+      state.launcherContent = makeElement(
+        "div",
+        { className: "od-root" },
+        header,
+        state.status,
+        state.rootsList
+      );
 
-      if (!state.rootsList) {
-        this._repositionLauncher(state);
-        return state;
-      }
+      state.launcherDialog = UITools.makeDialog({
+        title: "📂 Open Directories",
+        contentElement: state.launcherContent,
+        size: [315, "auto"],
+        position: [20, Math.max(20, window.innerHeight - 440)], 
+        noPadding: false,
+        allowMaximize: false,
+        stateId: 'vibes-directories-launcher' 
+      });
+    }
 
-      state.rootsList.innerHTML = "";
+    const stores = manager?.app?.workspaceFileStores;
 
-      if (!stores?.size) {
-        state.status.textContent = "No directories open yet.";
-        state.status.style.display = "block";
-        this._repositionLauncher(state);
-        return state;
-      }
-
-      state.status.style.display = "none";
-
-      for (const [rootId, store] of stores.entries()) {
-        state.rootsList.appendChild(
-          this.buildOpenDirectoryRow(manager, state, rootId, store)
-        );
-      }
-
+    if (!state.rootsList) {
       this._repositionLauncher(state);
       return state;
     }
 
+    state.rootsList.innerHTML = "";
+
+    if (!stores?.size) {
+      if (state.status) {
+        state.status.textContent = "No directories open yet.";
+        state.status.style.display = "block";
+      }
+      this._repositionLauncher(state);
+      return state;
+    }
+
+    if (state.status) {
+      state.status.style.display = "none";
+    }
+
+    for (const [rootId, store] of stores.entries()) {
+      state.rootsList.appendChild(
+        this.buildOpenDirectoryRow(manager, state, rootId, store)
+      );
+    }
+
+    this._repositionLauncher(state);
+    return state;
+  }
   buildOpenDirectoryRow(manager, state, rootId, store) {
       const rootName = rootId.replace(/^\//, "");
       const fileCount =
@@ -427,17 +430,41 @@ class ProjectFloatingTreeLauncher {
   async pickExternalFolderAndOpenFileTreeDialog(manager = this.manager) {
     const state = this.ensureFloatingFileTreeState(manager);
 
+    const setStatus = (msg) => {
+      if (state && state.status) {
+        state.status.textContent = msg;
+      }
+      if (manager?.app?.uiManager?.setStatus) {
+        manager.app.uiManager.setStatus(msg);
+      }
+    };
+
     if (!window.showDirectoryPicker) {
-      state.status.textContent =
-        "Directory picker not available in this browser.";
+      setStatus("Directory picker not available in this browser.");
       return {
         ok: false,
         reason: "Directory picker not available in this browser."
       };
     }
 
-    if (typeof LocalDirectoryStore === "undefined") {
-      state.status.textContent = "LocalDirectoryStore is not loaded.";
+    const StoreClass = typeof LocalDirectoryStore !== "undefined"
+      ? LocalDirectoryStore
+      : (typeof globalThis !== 'undefined' ? globalThis.LocalDirectoryStore : (typeof window !== 'undefined' ? window.LocalDirectoryStore : null));
+
+    if (!StoreClass) {
+      if (manager?.app?._loadClassicScriptOnce) {
+        try {
+          await manager.app._loadClassicScriptOnce('/vibes/src/editor/comms/LocalDirectoryStore.js');
+        } catch (e) {}
+      }
+    }
+
+    const ResolvedStoreClass = typeof LocalDirectoryStore !== "undefined"
+      ? LocalDirectoryStore
+      : (typeof globalThis !== 'undefined' ? globalThis.LocalDirectoryStore : (typeof window !== 'undefined' ? window.LocalDirectoryStore : null));
+
+    if (!ResolvedStoreClass) {
+      setStatus("LocalDirectoryStore is not loaded.");
       return {
         ok: false,
         reason: "LocalDirectoryStore is not loaded."
@@ -445,7 +472,7 @@ class ProjectFloatingTreeLauncher {
     }
 
     try {
-      state.status.textContent = "Waiting for folder picker…";
+      setStatus("Waiting for folder picker…");
 
       const dirHandle = await window.showDirectoryPicker({
         mode: "readwrite",
@@ -455,9 +482,9 @@ class ProjectFloatingTreeLauncher {
       const rootName = this.floatingTreeSafeRootName(manager, dirHandle.name);
       const rootId = "/" + rootName;
 
-      state.status.textContent = `Scanning ${rootName}…`;
+      setStatus(`Scanning ${rootName}…`);
 
-      const store = await LocalDirectoryStore.open(dirHandle, rootName);
+      const store = await ResolvedStoreClass.open(dirHandle, rootName);
 
       if (!manager.app.workspaceFileStores) {
         manager.app.workspaceFileStores = new Map();
@@ -471,7 +498,7 @@ class ProjectFloatingTreeLauncher {
         manager.openFloatingTreeForStore(rootId, store);
       }
 
-      state.status.textContent = `${rootId}: ${store.size} entries cached.`;
+      setStatus(`${rootId}: ${store.size} entries cached.`);
 
       return {
         ok: true,
@@ -479,21 +506,24 @@ class ProjectFloatingTreeLauncher {
         entries: store.size || 0
       };
     } catch (error) {
-      state.status.textContent =
-        error?.name === "AbortError"
+      const isAbort = error?.name === "AbortError";
+      setStatus(
+        isAbort
           ? "Folder picker cancelled."
-          : "Open failed: " + (error?.message || String(error));
+          : "Open failed: " + (error?.message || String(error))
+      );
 
-      console.error("[Floating FileTreeView] open failed:", error);
+      if (!isAbort) {
+        console.error("[Floating FileTreeView] open failed:", error);
+      }
 
       return {
         ok: false,
-        cancelled: error?.name === "AbortError",
+        cancelled: isAbort,
         reason: error?.message || String(error)
       };
     }
   }
-
   openWorkspaceTreeBestEffort(manager, rootId, store) {
     if (typeof manager?._openFloatingTreeForWorkspaceRoot === "function") {
       return manager._openFloatingTreeForWorkspaceRoot(rootId, store);
@@ -712,47 +742,69 @@ class ProjectFloatingTreeLauncher {
 
   async _handleAddDirectoryClick(manager, addDirBtn) {
     const webHandle = manager?.app?.browserWebRootHandle;
-    
+
     if (!webHandle) {
-      addDirBtn.disabled = true;
-      addDirBtn.textContent = "…";
+      if (addDirBtn) {
+        addDirBtn.disabled = true;
+        addDirBtn.textContent = "…";
+      }
       try {
         await this.pickExternalFolderAndOpenFileTreeDialog(manager);
       } finally {
-        addDirBtn.disabled = false;
-        addDirBtn.textContent = "＋";
+        if (addDirBtn) {
+          addDirBtn.disabled = false;
+          addDirBtn.textContent = "＋";
+        }
         this.renderFloatingFileTreeLauncher(manager);
       }
       return;
     }
 
-    // We have a web root handle, list subdirectories
-    const folders = await manager._listBrowserWebRootSubfolders(webHandle);
-    const openFolders = Array.from(manager.app.workspaceFileStores?.keys() || []).map(k => k.replace(/^\//, ''));
+    // Remove redundant parent folder from workspace stores if it was previously mounted
+    const redundantKey = '/' + webHandle.name;
+    if (manager?.app?.workspaceFileStores?.has(redundantKey)) {
+      manager.app.workspaceFileStores.delete(redundantKey);
+      if (manager?.floatingFileTreeState?.trees?.has(redundantKey)) {
+        const info = manager.floatingFileTreeState.trees.get(redundantKey);
+        if (info?.host?.close) info.host.close();
+        manager.floatingFileTreeState.trees.delete(redundantKey);
+      }
+    }
+
+    // List subdirectories with multi-stage fallback
+    const folders = typeof this._listBrowserWebRootSubfolders === 'function'
+      ? await this._listBrowserWebRootSubfolders(webHandle)
+      : (typeof manager._listBrowserWebRootSubfolders === 'function' ? await manager._listBrowserWebRootSubfolders(webHandle) : []);
+
+    const openFolders = Array.from(manager?.app?.workspaceFileStores?.keys() || []).map(k => k.replace(/^\//, ''));
 
     const content = document.createElement('div');
-    content.style.cssText = 'display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;padding:10px;background:#141824;color:#eee;font-family:system-ui,sans-serif;';
+    content.style.cssText = 'display:flex;flex-direction:column;gap:8px;max-height:420px;overflow-y:auto;padding:10px;background:#141824;color:#eee;font-family:system-ui,sans-serif;';
 
     const osBtn = document.createElement('button');
-    osBtn.textContent = '📁 Pick New OS Folder...';
+    osBtn.textContent = '📁 Pick Different Parent Folder...';
     osBtn.style.cssText = 'padding:10px;background:#2a3f5f;color:white;border:1px solid #4a6fa5;border-radius:6px;cursor:pointer;font-weight:bold;';
     osBtn.onmouseover = () => osBtn.style.background = '#36507a';
     osBtn.onmouseout = () => osBtn.style.background = '#2a3f5f';
-    
+
     const hr = document.createElement('hr');
     hr.style.cssText = 'border:none;border-top:1px solid rgba(255,255,255,0.1);width:100%;margin:4px 0;';
 
     const dialogRef = { dialog: null };
-    
+
     osBtn.onclick = async () => {
       if (dialogRef.dialog) dialogRef.dialog.close();
-      addDirBtn.disabled = true;
-      addDirBtn.textContent = "…";
+      if (addDirBtn) {
+        addDirBtn.disabled = true;
+        addDirBtn.textContent = "…";
+      }
       try {
         await this.pickExternalFolderAndOpenFileTreeDialog(manager);
       } finally {
-        addDirBtn.disabled = false;
-        addDirBtn.textContent = "＋";
+        if (addDirBtn) {
+          addDirBtn.disabled = false;
+          addDirBtn.textContent = "＋";
+        }
         this.renderFloatingFileTreeLauncher(manager);
       }
     };
@@ -761,31 +813,46 @@ class ProjectFloatingTreeLauncher {
     content.appendChild(hr);
 
     const subTitle = document.createElement('div');
-    subTitle.textContent = `Subfolders of /${webHandle.name}`;
-    subTitle.style.cssText = 'font-size:11px;color:#88a;text-transform:uppercase;letter-spacing:0.5px;margin:4px 0;';
+    subTitle.textContent = `Subdirectories in [${webHandle.name}]:`;
+    subTitle.style.cssText = 'font-size:11px;color:#8ab4f8;text-transform:uppercase;letter-spacing:0.5px;margin:4px 0;font-weight:bold;';
     content.appendChild(subTitle);
+
+    if (folders.length === 0) {
+      const noSubs = document.createElement('div');
+      noSubs.textContent = 'No subdirectories found in ' + webHandle.name + '. Click "Pick Different Parent Folder..." above to choose your workspace root.';
+      noSubs.style.cssText = 'font-size:12px;color:#ff9999;font-style:italic;padding:8px;line-height:1.4;';
+      content.appendChild(noSubs);
+    }
 
     for (const folder of folders) {
       const isOpened = openFolders.includes(folder.name);
       const btn = document.createElement('button');
-      btn.textContent = `📄 ${folder.name}` + (isOpened ? ' (Opened)' : '');
+      btn.textContent = `📁 ${folder.name}` + (isOpened ? ' (Opened)' : '');
       btn.disabled = isOpened;
-      btn.style.cssText = `padding:8px;background:#1e2230;color:${isOpened ? '#667' : '#cce'};border:1px solid #2a3040;border-radius:6px;cursor:${isOpened ? 'default' : 'pointer'};text-align:left;display:flex;justify-content:space-between;`;
-      
+      btn.style.cssText = `padding:8px 12px;background:#1e2230;color:${isOpened ? '#667' : '#cce'};border:1px solid #2a3040;border-radius:6px;cursor:${isOpened ? 'default' : 'pointer'};text-align:left;display:flex;justify-content:space-between;font-family:monospace;font-size:12px;`;
+
       if (!isOpened) {
         btn.onmouseover = () => btn.style.background = '#2a3044';
         btn.onmouseout = () => btn.style.background = '#1e2230';
         btn.onclick = async () => {
           if (dialogRef.dialog) dialogRef.dialog.close();
-          addDirBtn.disabled = true;
-          addDirBtn.textContent = "…";
+          if (addDirBtn) {
+            addDirBtn.disabled = true;
+            addDirBtn.textContent = "…";
+          }
           try {
-            await manager._openBrowserWebRootSubtree(webHandle, folder.name, { manager });
+            if (typeof this._openBrowserWebRootSubtree === 'function') {
+              await this._openBrowserWebRootSubtree(webHandle, folder.name, { manager });
+            } else if (typeof manager._openBrowserWebRootSubtree === 'function') {
+              await manager._openBrowserWebRootSubtree(webHandle, folder.name, { manager });
+            }
           } catch (e) {
             console.error("Failed to open subtree", e);
           } finally {
-            addDirBtn.disabled = false;
-            addDirBtn.textContent = "＋";
+            if (addDirBtn) {
+              addDirBtn.disabled = false;
+              addDirBtn.textContent = "＋";
+            }
             this.renderFloatingFileTreeLauncher(manager);
           }
         };
@@ -794,13 +861,11 @@ class ProjectFloatingTreeLauncher {
     }
 
     dialogRef.dialog = UITools.makeDialog({
-      title: 'Add Workspace Directory',
+      title: 'Open Directory',
       contentElement: content,
-      width: '320px'
+      width: '360px'
     });
   }
-
-
   _repositionLauncher(state) {
       if (!state || !state.launcherDialog || !state.launcherDialog.element) return;
       
@@ -815,4 +880,113 @@ class ProjectFloatingTreeLauncher {
         });
       });
     }
+
+  async _listBrowserWebRootSubfolders(webHandle) {
+    const folders = [];
+    if (!webHandle) return folders;
+
+    // 1. Ensure permission is granted
+    if (typeof webHandle.queryPermission === 'function') {
+      try {
+        let perm = await webHandle.queryPermission({ mode: 'readwrite' });
+        if (perm !== 'granted') {
+          perm = await webHandle.requestPermission({ mode: 'readwrite' });
+        }
+      } catch (e) {}
+    }
+
+    let scanError = null;
+
+    // 2. Primary directory iteration using values() and entries()
+    try {
+      if (typeof webHandle.values === 'function') {
+        for await (const entry of webHandle.values()) {
+          if (entry.kind === 'directory' && !entry.name.startsWith('.') && entry.name !== 'node_modules') {
+            folders.push({ name: entry.name, handle: entry });
+          }
+        }
+      } else if (typeof webHandle.entries === 'function') {
+        for await (const [name, entry] of webHandle.entries()) {
+          if (entry.kind === 'directory' && !name.startsWith('.') && name !== 'node_modules') {
+            folders.push({ name, handle: entry });
+          }
+        }
+      }
+    } catch (e) {
+      scanError = e.message || String(e);
+      console.warn('[ProjectFloatingTreeLauncher] Primary directory scan notice:', e);
+    }
+
+    // 3. Fallback: Probe known sibling projects and query local server projects list
+    if (folders.length === 0 && typeof webHandle.getDirectoryHandle === 'function') {
+      const candidateNames = new Set([
+        'vibes', 'Luno', 'Library', 'Basic3D', 'BasicsWithDialogBox', 'TriBlob',
+        'teacup', 'LegoDetective', 'AlphabetGame', 'MathStorm', 'guessTheNoteGame',
+        'Calculator', 'accuCad', 'situation', 'AardvarkPlaylist', 'SvgStudio',
+        'Es6Converter', 'LunoTests', 'BookmarkletWorkshop'
+      ]);
+
+      try {
+        const res = await fetch('/api/projects/list');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.projects)) {
+            data.projects.forEach(p => { if (p && p.name) candidateNames.add(p.name); });
+          }
+        }
+      } catch (e) {}
+
+      for (const name of candidateNames) {
+        if (folders.some(f => f.name === name)) continue;
+        try {
+          const sub = await webHandle.getDirectoryHandle(name, { create: false });
+          if (sub) {
+            folders.push({ name, handle: sub });
+          }
+        } catch (e) {}
+      }
+    }
+
+    folders.sort((a, b) => a.name.localeCompare(b.name));
+    return folders;
+  }
+  async _openBrowserWebRootSubtree(webHandle, folderName, options = {}) {
+    const mgr = options.manager || this.manager || window._dev_projectEditorInstance?.projectFilesManager;
+    const app = mgr?.app || globalThis.vibesApp;
+
+    try {
+      const subHandle = await webHandle.getDirectoryHandle(folderName, { create: false });
+      const rootId = '/' + folderName;
+      const StoreClass = globalThis.LocalDirectoryStore || window.LocalDirectoryStore;
+
+      if (!StoreClass) {
+        throw new Error('LocalDirectoryStore is not loaded.');
+      }
+
+      const store = await StoreClass.open(subHandle, folderName);
+
+      if (!app.workspaceFileStores) {
+        app.workspaceFileStores = new Map();
+      }
+      app.workspaceFileStores.set(rootId, store);
+
+      if (mgr && typeof mgr.openFloatingTreeForStore === 'function') {
+        mgr.openFloatingTreeForStore(rootId, store);
+      }
+
+      this.renderFloatingFileTreeLauncher(mgr);
+
+      if (app?.uiManager?.setStatus) {
+        app.uiManager.setStatus(`Opened directory: ${folderName}`);
+      }
+
+      return { ok: true, rootId, store };
+    } catch (error) {
+      console.error(`[ProjectFloatingTreeLauncher] Failed to open subtree ${folderName}:`, error);
+      if (app?.uiManager?.setStatus) {
+        app.uiManager.setStatus(`Could not open ${folderName}: ${error.message}`, true);
+      }
+      return { ok: false, error: error.message };
+    }
+  }
 }
