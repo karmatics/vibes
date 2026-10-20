@@ -25,13 +25,27 @@ class LunoProtocolExecutor {
   }
 
   isSiblingProjectFile(rawPath) {
-    if (!rawPath || typeof rawPath !== 'string') return false;
-    const clean = rawPath.replace(/\\/g, '/').replace(/^\/+/, '').trim();
-    const firstSegment = clean.split('/')[0];
-    const knownSiblings = ['Luno', 'LunoTests', 'Library', 'Basic3D', 'BasicsWithDialogBox', 'SvgStudio', 'Es6Converter', 'BookmarkletWorkshop'];
-    return knownSiblings.includes(firstSegment);
-  }
-
+      if (!rawPath || typeof rawPath !== 'string') return false;
+      const clean = rawPath.replace(/\\/g, '/').replace(/^\/+/, '').trim();
+      const firstSegment = clean.split('/')[0];
+      const knownSiblings = [
+        'Luno',
+        'LunoParser',
+        'LunoTests',
+        'Library',
+        'Basic3D',
+        'BasicsWithDialogBox',
+        'SvgStudio',
+        'Es6Converter',
+        'BookmarkletWorkshop',
+        'MathStorm',
+        'Calculator',
+        'accuCad',
+        'situation',
+        'AardvarkPlaylist'
+      ];
+      return knownSiblings.includes(firstSegment);
+    }
   async execute(payloadText) {
       if (!payloadText || typeof payloadText !== 'string' || !payloadText.trim()) {
         return { success: false, error: 'Empty payload provided.' };

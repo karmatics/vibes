@@ -317,4 +317,25 @@ class VisibilitySetsCapsule {
           "fileCount": 36
     };
   }
+
+  static _set_diff_and_protocol() {
+      return {
+        "name": "diff-and-protocol",
+        "files": {
+          "/vibes/src/editor/ui/dialogs/DiffHelper.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/ui/dialogs/PasteReviewDialog.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/ui/dialogs/PatchDashboard.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/ui/dialogs/UndoTimelineDialog.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/handlers/AppProtocolHandler.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/handlers/LunoProtocolExecutor.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/handlers/UnifiedProtocolExecutor.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/comms/PatchManager.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/comms/VibesPatchStore.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 },
+          "/vibes/src/editor/comms/VirtualFileSystem.js": { "code": true, "codeLevel": 4, "signatures": false, "docs": false, "docsLevel": 0 }
+        },
+        "treeRoot": "/vibes",
+        "treeLabel": "Vibes Diff & Protocol Core",
+        "fileCount": 10
+      };
+    }
 }
