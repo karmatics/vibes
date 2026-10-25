@@ -541,3 +541,28 @@ class CodeParser {
     }
 }
 
+
+
+globalThis.CodeParser = CodeParser;
+if (typeof window !== "undefined") window.CodeParser = CodeParser;
+if (typeof module !== "undefined" && module.exports) module.exports = CodeParser;
+
+
+globalThis.structure = structure;
+if (typeof window !== "undefined") window.structure = structure;
+if (typeof module !== "undefined" && module.exports) module.exports = structure;
+
+
+globalThis.A = A;
+if (typeof window !== "undefined") window.A = A;
+if (typeof module !== "undefined" && module.exports) module.exports = A;
+
+
+globalThis.declaration = declaration;
+if (typeof window !== "undefined") window.declaration = declaration;
+if (typeof module !== "undefined" && module.exports) module.exports = declaration;
+
+
+globalThis.exposes = exposes;
+if (typeof window !== "undefined") window.exposes = exposes;
+if (typeof module !== "undefined" && module.exports) module.exports = exposes;

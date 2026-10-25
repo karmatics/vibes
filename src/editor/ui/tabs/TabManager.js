@@ -534,3 +534,8 @@ class TabManager {
 
 }
 
+
+
+globalThis.TabManager = TabManager;
+if (typeof window !== "undefined") window.TabManager = TabManager;
+if (typeof module !== "undefined" && module.exports) module.exports = TabManager;

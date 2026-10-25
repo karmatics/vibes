@@ -273,3 +273,12 @@ class ProjectFolderMetaCapsuleAttacher {
   }
 
 }
+
+globalThis.ProjectFolderMetaCapsuleAttacher = ProjectFolderMetaCapsuleAttacher;
+if (typeof window !== "undefined") window.ProjectFolderMetaCapsuleAttacher = ProjectFolderMetaCapsuleAttacher;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFolderMetaCapsuleAttacher;
+
+
+globalThis.name = name;
+if (typeof window !== "undefined") window.name = name;
+if (typeof module !== "undefined" && module.exports) module.exports = name;

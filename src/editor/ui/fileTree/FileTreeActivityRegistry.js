@@ -221,3 +221,7 @@ class FileTreeActivityRegistry {
   }
 
 }
+
+globalThis.FileTreeActivityRegistry = FileTreeActivityRegistry;
+if (typeof window !== "undefined") window.FileTreeActivityRegistry = FileTreeActivityRegistry;
+if (typeof module !== "undefined" && module.exports) module.exports = FileTreeActivityRegistry;

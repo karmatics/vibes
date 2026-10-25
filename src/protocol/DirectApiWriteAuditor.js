@@ -51,3 +51,8 @@ class DirectApiWriteAuditor {
   }
 
 }
+
+
+globalThis.DirectApiWriteAuditor = DirectApiWriteAuditor;
+if (typeof window !== "undefined") window.DirectApiWriteAuditor = DirectApiWriteAuditor;
+if (typeof module !== "undefined" && module.exports) module.exports = DirectApiWriteAuditor;

@@ -1,4 +1,11 @@
 class ProjectEditorApp {
+  static _export = (() => {
+    if (typeof globalThis !== "undefined") globalThis.ProjectEditorApp = ProjectEditorApp;
+    if (typeof window !== "undefined") window.ProjectEditorApp = ProjectEditorApp;
+    if (typeof module !== "undefined" && module.exports) module.exports = ProjectEditorApp;
+    return true;
+  })();
+
   getAllVisibilityWidgets() {
     const widgets = [];
     const pfm = this.projectFilesManager;
@@ -1598,3 +1605,28 @@ ProjectEditorApp is the master dependency injection container and state coordina
 
 globalThis.ProjectEditorApp = ProjectEditorApp;
 if (typeof module !== "undefined" && module.exports) module.exports = ProjectEditorApp;
+
+
+globalThis.lookup = lookup;
+if (typeof window !== "undefined") window.lookup = lookup;
+if (typeof module !== "undefined" && module.exports) module.exports = lookup;
+
+
+globalThis.immediately = immediately;
+if (typeof window !== "undefined") window.immediately = immediately;
+if (typeof module !== "undefined" && module.exports) module.exports = immediately;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;
+
+
+globalThis.symbols = symbols;
+if (typeof window !== "undefined") window.symbols = symbols;
+if (typeof module !== "undefined" && module.exports) module.exports = symbols;
+
+
+globalThis.registration = registration;
+if (typeof window !== "undefined") window.registration = registration;
+if (typeof module !== "undefined" && module.exports) module.exports = registration;

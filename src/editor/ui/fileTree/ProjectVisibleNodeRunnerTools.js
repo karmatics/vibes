@@ -364,3 +364,37 @@ runner.run({ fs, path, os, child_process, baseDir: __dirname }).catch(console.er
       }, 2000);
     }
 }
+
+globalThis.ProjectVisibleNodeRunnerTools = ProjectVisibleNodeRunnerTools;
+if (typeof window !== "undefined") window.ProjectVisibleNodeRunnerTools = ProjectVisibleNodeRunnerTools;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectVisibleNodeRunnerTools;
+
+
+globalThis.sent = sent;
+if (typeof window !== "undefined") window.sent = sent;
+if (typeof module !== "undefined" && module.exports) module.exports = sent;
+
+
+globalThis.VibesNodeRunnerSmokeTest = VibesNodeRunnerSmokeTest;
+if (typeof window !== "undefined") window.VibesNodeRunnerSmokeTest = VibesNodeRunnerSmokeTest;
+if (typeof module !== "undefined" && module.exports) module.exports = VibesNodeRunnerSmokeTest;
+
+
+globalThis.RunnerCapsule = RunnerCapsule;
+if (typeof window !== "undefined") window.RunnerCapsule = RunnerCapsule;
+if (typeof module !== "undefined" && module.exports) module.exports = RunnerCapsule;
+
+
+globalThis.$ = $;
+if (typeof window !== "undefined") window.$ = $;
+if (typeof module !== "undefined" && module.exports) module.exports = $;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;
+
+
+globalThis.ScreenshotOrganizerCapsule = ScreenshotOrganizerCapsule;
+if (typeof window !== "undefined") window.ScreenshotOrganizerCapsule = ScreenshotOrganizerCapsule;
+if (typeof module !== "undefined" && module.exports) module.exports = ScreenshotOrganizerCapsule;

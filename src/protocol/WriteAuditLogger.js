@@ -102,3 +102,8 @@ class WriteAuditLogger {
   }
 
 }
+
+
+globalThis.WriteAuditLogger = WriteAuditLogger;
+if (typeof window !== "undefined") window.WriteAuditLogger = WriteAuditLogger;
+if (typeof module !== "undefined" && module.exports) module.exports = WriteAuditLogger;

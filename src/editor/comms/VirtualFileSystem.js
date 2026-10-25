@@ -981,3 +981,37 @@ By channeling all file reads and writes through the VFS, Vibes avoids the comple
       }
     }
 }
+
+globalThis.VirtualFileSystem = VirtualFileSystem;
+if (typeof window !== "undefined") window.VirtualFileSystem = VirtualFileSystem;
+if (typeof module !== "undefined" && module.exports) module.exports = VirtualFileSystem;
+
+
+globalThis.__VibesHotPatch__ = __VibesHotPatch__;
+if (typeof window !== "undefined") window.__VibesHotPatch__ = __VibesHotPatch__;
+if (typeof module !== "undefined" && module.exports) module.exports = __VibesHotPatch__;
+
+
+globalThis.methods = methods;
+if (typeof window !== "undefined") window.methods = methods;
+if (typeof module !== "undefined" && module.exports) module.exports = methods;
+
+
+globalThis.bodies = bodies;
+if (typeof window !== "undefined") window.bodies = bodies;
+if (typeof module !== "undefined" && module.exports) module.exports = bodies;
+
+
+globalThis.changes = changes;
+if (typeof window !== "undefined") window.changes = changes;
+if (typeof module !== "undefined" && module.exports) module.exports = changes;
+
+
+globalThis.declarations = declarations;
+if (typeof window !== "undefined") window.declarations = declarations;
+if (typeof module !== "undefined" && module.exports) module.exports = declarations;
+
+
+globalThis.$ = $;
+if (typeof window !== "undefined") window.$ = $;
+if (typeof module !== "undefined" && module.exports) module.exports = $;

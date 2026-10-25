@@ -202,3 +202,7 @@ class ProjectFilesMetadataAnalyzer {
       return result;
     }
 }
+
+globalThis.ProjectFilesMetadataAnalyzer = ProjectFilesMetadataAnalyzer;
+if (typeof window !== "undefined") window.ProjectFilesMetadataAnalyzer = ProjectFilesMetadataAnalyzer;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesMetadataAnalyzer;

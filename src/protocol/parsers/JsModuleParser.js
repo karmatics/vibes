@@ -447,3 +447,21 @@ It parses complete JavaScript files to extract import declarations, class export
 
 globalThis.JsModuleParser = JsModuleParser;
 if (typeof module !== "undefined" && module.exports) module.exports = JsModuleParser;
+
+
+globalThis.structures = structures;
+if (typeof window !== "undefined") window.structures = structures;
+if (typeof module !== "undefined" && module.exports) module.exports = structures;
+
+
+globalThis.method = method;
+if (typeof window !== "undefined") window.method = method;
+if (typeof module !== "undefined" && module.exports) module.exports = method;
+
+
+globalThis.exports = exports;
+if (typeof window !== "undefined") window.exports = exports;
+if (typeof module !== "undefined" && module.exports) module.exports = exports;
+globalThis.bodies = bodies;
+if (typeof window !== "undefined") window.bodies = bodies;
+if (typeof module !== "undefined" && module.exports) module.exports = bodies;

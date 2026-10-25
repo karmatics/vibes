@@ -386,3 +386,7 @@ class ProjectFloatingTreeStoreBuilder {
   }
 
 }
+
+globalThis.ProjectFloatingTreeStoreBuilder = ProjectFloatingTreeStoreBuilder;
+if (typeof window !== "undefined") window.ProjectFloatingTreeStoreBuilder = ProjectFloatingTreeStoreBuilder;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFloatingTreeStoreBuilder;

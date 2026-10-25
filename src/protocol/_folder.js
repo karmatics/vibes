@@ -27,3 +27,7 @@ class ProtocolFolderMeta {
     };
   }
 }
+
+globalThis.ProtocolFolderMeta = ProtocolFolderMeta;
+if (typeof window !== "undefined") window.ProtocolFolderMeta = ProtocolFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = ProtocolFolderMeta;

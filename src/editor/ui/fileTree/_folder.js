@@ -13,3 +13,7 @@ class FileTreeFolderMeta {
     };
   }
 }
+
+globalThis.FileTreeFolderMeta = FileTreeFolderMeta;
+if (typeof window !== "undefined") window.FileTreeFolderMeta = FileTreeFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = FileTreeFolderMeta;

@@ -644,3 +644,17 @@ class GlowDrawer {
   }
 
 }
+
+globalThis.GlowDrawer = GlowDrawer;
+if (typeof window !== "undefined") window.GlowDrawer = GlowDrawer;
+if (typeof module !== "undefined" && module.exports) module.exports = GlowDrawer;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;
+
+
+globalThis.globally = globally;
+if (typeof window !== "undefined") window.globally = globally;
+if (typeof module !== "undefined" && module.exports) module.exports = globally;

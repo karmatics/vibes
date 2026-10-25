@@ -227,3 +227,7 @@ class ActionInitializer {
       return "### ActionInitializer\n\nRegisters all core global shortcuts, workspace menus, and playground actions with the central ActionRegistry on startup.";
     }
 }
+
+globalThis.ActionInitializer = ActionInitializer;
+if (typeof window !== "undefined") window.ActionInitializer = ActionInitializer;
+if (typeof module !== "undefined" && module.exports) module.exports = ActionInitializer;

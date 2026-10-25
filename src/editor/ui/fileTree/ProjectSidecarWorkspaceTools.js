@@ -363,3 +363,7 @@ class ProjectSidecarWorkspaceTools {
   }
 
 }
+
+globalThis.ProjectSidecarWorkspaceTools = ProjectSidecarWorkspaceTools;
+if (typeof window !== "undefined") window.ProjectSidecarWorkspaceTools = ProjectSidecarWorkspaceTools;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectSidecarWorkspaceTools;

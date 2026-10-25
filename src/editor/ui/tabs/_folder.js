@@ -10,3 +10,7 @@ class TabsFolderMeta {
     };
   }
 }
+
+globalThis.TabsFolderMeta = TabsFolderMeta;
+if (typeof window !== "undefined") window.TabsFolderMeta = TabsFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = TabsFolderMeta;

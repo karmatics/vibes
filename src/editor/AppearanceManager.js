@@ -415,3 +415,8 @@ Handles global theme and layout configuration for the Vibes IDE. Loads and saves
     }
 }
 
+
+
+globalThis.AppearanceManager = AppearanceManager;
+if (typeof window !== "undefined") window.AppearanceManager = AppearanceManager;
+if (typeof module !== "undefined" && module.exports) module.exports = AppearanceManager;

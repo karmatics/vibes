@@ -82,3 +82,8 @@ class TaskRunner {
   
 }
 
+
+
+globalThis.TaskRunner = TaskRunner;
+if (typeof window !== "undefined") window.TaskRunner = TaskRunner;
+if (typeof module !== "undefined" && module.exports) module.exports = TaskRunner;

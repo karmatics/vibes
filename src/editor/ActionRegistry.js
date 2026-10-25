@@ -128,3 +128,8 @@ class ActionRegistry {
     }
 }
 
+
+
+globalThis.ActionRegistry = ActionRegistry;
+if (typeof window !== "undefined") window.ActionRegistry = ActionRegistry;
+if (typeof module !== "undefined" && module.exports) module.exports = ActionRegistry;

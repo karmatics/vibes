@@ -223,3 +223,7 @@ class DiffHelper {
       return row;
     }
 }
+
+globalThis.DiffHelper = DiffHelper;
+if (typeof window !== "undefined") window.DiffHelper = DiffHelper;
+if (typeof module !== "undefined" && module.exports) module.exports = DiffHelper;

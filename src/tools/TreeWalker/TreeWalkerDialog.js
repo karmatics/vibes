@@ -2663,3 +2663,32 @@ ${this._indent(this._getCodeSlot('onExport'), 4)}
     return false;
   }
 }
+
+globalThis.TreeWalkerDialog = TreeWalkerDialog;
+if (typeof window !== "undefined") window.TreeWalkerDialog = TreeWalkerDialog;
+if (typeof module !== "undefined" && module.exports) module.exports = TreeWalkerDialog;
+
+
+globalThis.here = here;
+if (typeof window !== "undefined") window.here = here;
+if (typeof module !== "undefined" && module.exports) module.exports = here;
+
+
+globalThis.WalkResults = WalkResults;
+if (typeof window !== "undefined") window.WalkResults = WalkResults;
+if (typeof module !== "undefined" && module.exports) module.exports = WalkResults;
+
+
+globalThis.method = method;
+if (typeof window !== "undefined") window.method = method;
+if (typeof module !== "undefined" && module.exports) module.exports = method;
+
+
+globalThis.$ = $;
+if (typeof window !== "undefined") window.$ = $;
+if (typeof module !== "undefined" && module.exports) module.exports = $;
+
+
+globalThis.name = name;
+if (typeof window !== "undefined") window.name = name;
+if (typeof module !== "undefined" && module.exports) module.exports = name;

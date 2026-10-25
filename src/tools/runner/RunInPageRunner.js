@@ -108,3 +108,7 @@ class RunInPageRunner {
   }
 
 }
+
+globalThis.RunInPageRunner = RunInPageRunner;
+if (typeof window !== "undefined") window.RunInPageRunner = RunInPageRunner;
+if (typeof module !== "undefined" && module.exports) module.exports = RunInPageRunner;

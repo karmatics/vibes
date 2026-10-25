@@ -410,3 +410,7 @@ class ProjectFilesVisibilityCoordinator {
   }
 
 }
+
+globalThis.ProjectFilesVisibilityCoordinator = ProjectFilesVisibilityCoordinator;
+if (typeof window !== "undefined") window.ProjectFilesVisibilityCoordinator = ProjectFilesVisibilityCoordinator;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesVisibilityCoordinator;

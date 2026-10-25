@@ -95,3 +95,8 @@ class FileOperationLogger {
   
 }
 
+
+
+globalThis.FileOperationLogger = FileOperationLogger;
+if (typeof window !== "undefined") window.FileOperationLogger = FileOperationLogger;
+if (typeof module !== "undefined" && module.exports) module.exports = FileOperationLogger;

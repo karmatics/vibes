@@ -1724,3 +1724,12 @@ class ReceiveCodeTester {
   }
 
 }
+
+globalThis.injection = injection;
+if (typeof window !== "undefined") window.injection = injection;
+if (typeof module !== "undefined" && module.exports) module.exports = injection;
+
+
+globalThis.ReceiveCodeTesterPendingExampleV3 = ReceiveCodeTesterPendingExampleV3;
+if (typeof window !== "undefined") window.ReceiveCodeTesterPendingExampleV3 = ReceiveCodeTesterPendingExampleV3;
+if (typeof module !== "undefined" && module.exports) module.exports = ReceiveCodeTesterPendingExampleV3;

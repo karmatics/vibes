@@ -457,3 +457,18 @@ It acts as the low-level helper for all custom parsing and slicing operations in
 
 globalThis.AstUtils = AstUtils;
 if (typeof module !== "undefined" && module.exports) module.exports = AstUtils;
+
+
+globalThis.or = or;
+if (typeof window !== "undefined") window.or = or;
+if (typeof module !== "undefined" && module.exports) module.exports = or;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;
+
+
+globalThis.members = members;
+if (typeof window !== "undefined") window.members = members;
+if (typeof module !== "undefined" && module.exports) module.exports = members;

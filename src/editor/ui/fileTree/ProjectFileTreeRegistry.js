@@ -112,3 +112,7 @@ class ProjectFileTreeRegistry {
     }
 
 }
+
+globalThis.ProjectFileTreeRegistry = ProjectFileTreeRegistry;
+if (typeof window !== "undefined") window.ProjectFileTreeRegistry = ProjectFileTreeRegistry;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFileTreeRegistry;

@@ -625,3 +625,13 @@ class RepoAstAuditWalkSkill {
       }
 
 }
+
+
+globalThis.RepoAstAuditWalkSkill = RepoAstAuditWalkSkill;
+if (typeof window !== "undefined") window.RepoAstAuditWalkSkill = RepoAstAuditWalkSkill;
+if (typeof module !== "undefined" && module.exports) module.exports = RepoAstAuditWalkSkill;
+
+
+globalThis.conformance = conformance;
+if (typeof window !== "undefined") window.conformance = conformance;
+if (typeof module !== "undefined" && module.exports) module.exports = conformance;

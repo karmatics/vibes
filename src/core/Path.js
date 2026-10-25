@@ -205,3 +205,8 @@ class Path {
 
 }
 
+
+
+globalThis.Path = Path;
+if (typeof window !== "undefined") window.Path = Path;
+if (typeof module !== "undefined" && module.exports) module.exports = Path;

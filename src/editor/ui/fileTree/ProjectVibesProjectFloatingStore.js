@@ -210,3 +210,7 @@ class ProjectVibesProjectFloatingStore {
   }
 
 }
+
+globalThis.ProjectVibesProjectFloatingStore = ProjectVibesProjectFloatingStore;
+if (typeof window !== "undefined") window.ProjectVibesProjectFloatingStore = ProjectVibesProjectFloatingStore;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectVibesProjectFloatingStore;

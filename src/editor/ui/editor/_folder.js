@@ -14,3 +14,7 @@ class EditorFolderMeta {
     };
   }
 }
+
+globalThis.EditorFolderMeta = EditorFolderMeta;
+if (typeof window !== "undefined") window.EditorFolderMeta = EditorFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = EditorFolderMeta;

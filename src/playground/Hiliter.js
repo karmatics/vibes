@@ -1042,3 +1042,8 @@ class Hiliter {
 
 }
 
+
+
+globalThis.Hiliter = Hiliter;
+if (typeof window !== "undefined") window.Hiliter = Hiliter;
+if (typeof module !== "undefined" && module.exports) module.exports = Hiliter;

@@ -12,3 +12,7 @@ class WidgetsFolderMeta {
     };
   }
 }
+
+globalThis.WidgetsFolderMeta = WidgetsFolderMeta;
+if (typeof window !== "undefined") window.WidgetsFolderMeta = WidgetsFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = WidgetsFolderMeta;

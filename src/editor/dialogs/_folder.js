@@ -10,3 +10,7 @@ class DialogsFolderMeta {
     };
   }
 }
+
+globalThis.DialogsFolderMeta = DialogsFolderMeta;
+if (typeof window !== "undefined") window.DialogsFolderMeta = DialogsFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = DialogsFolderMeta;

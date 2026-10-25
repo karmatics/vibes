@@ -10,3 +10,7 @@ class FloatingFolderMeta {
     };
   }
 }
+
+globalThis.FloatingFolderMeta = FloatingFolderMeta;
+if (typeof window !== "undefined") window.FloatingFolderMeta = FloatingFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = FloatingFolderMeta;

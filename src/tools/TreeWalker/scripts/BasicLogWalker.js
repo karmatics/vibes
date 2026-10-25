@@ -19,3 +19,7 @@ class BasicLogWalker {
     }
 
 }
+
+globalThis.BasicLogWalker = BasicLogWalker;
+if (typeof window !== "undefined") window.BasicLogWalker = BasicLogWalker;
+if (typeof module !== "undefined" && module.exports) module.exports = BasicLogWalker;

@@ -206,3 +206,8 @@ class BlockableWriteGate {
   }
 
 }
+
+
+globalThis.BlockableWriteGate = BlockableWriteGate;
+if (typeof window !== "undefined") window.BlockableWriteGate = BlockableWriteGate;
+if (typeof module !== "undefined" && module.exports) module.exports = BlockableWriteGate;

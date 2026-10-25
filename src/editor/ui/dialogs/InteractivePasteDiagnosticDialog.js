@@ -252,3 +252,7 @@ class InteractivePasteDiagnosticDialog {
       return this.retryBtn;
     }
 }
+
+globalThis.InteractivePasteDiagnosticDialog = InteractivePasteDiagnosticDialog;
+if (typeof window !== "undefined") window.InteractivePasteDiagnosticDialog = InteractivePasteDiagnosticDialog;
+if (typeof module !== "undefined" && module.exports) module.exports = InteractivePasteDiagnosticDialog;

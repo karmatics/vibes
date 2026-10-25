@@ -52,3 +52,7 @@ class WalkerQueue {
   }
 
 }
+
+globalThis.WalkerQueue = WalkerQueue;
+if (typeof window !== "undefined") window.WalkerQueue = WalkerQueue;
+if (typeof module !== "undefined" && module.exports) module.exports = WalkerQueue;

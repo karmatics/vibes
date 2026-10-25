@@ -120,3 +120,8 @@ It acts as a safety gate, ensuring that every JS write request is structurally v
 ManagedWritePipeline is the transactional validation pipeline for JavaScript files in the workspace. It acts as the gatekeeper, ensuring that every JS write request is structurally verified before being committed, protecting files from parse-breaking syntax errors.`;
     }
 }
+
+
+globalThis.ManagedWritePipeline = ManagedWritePipeline;
+if (typeof window !== "undefined") window.ManagedWritePipeline = ManagedWritePipeline;
+if (typeof module !== "undefined" && module.exports) module.exports = ManagedWritePipeline;

@@ -204,3 +204,18 @@ ProjectUnpacker is the counterpart to ProjectPacker. It takes a single, self-con
     }
 }
 
+
+
+globalThis.ProjectUnpacker = ProjectUnpacker;
+if (typeof window !== "undefined") window.ProjectUnpacker = ProjectUnpacker;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectUnpacker;
+
+
+globalThis.parses = parses;
+if (typeof window !== "undefined") window.parses = parses;
+if (typeof module !== "undefined" && module.exports) module.exports = parses;
+
+
+globalThis.topology = topology;
+if (typeof window !== "undefined") window.topology = topology;
+if (typeof module !== "undefined" && module.exports) module.exports = topology;

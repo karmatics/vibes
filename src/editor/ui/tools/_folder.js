@@ -13,3 +13,7 @@ class ToolsFolderMeta {
     };
   }
 }
+
+globalThis.ToolsFolderMeta = ToolsFolderMeta;
+if (typeof window !== "undefined") window.ToolsFolderMeta = ToolsFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = ToolsFolderMeta;

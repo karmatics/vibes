@@ -30,3 +30,8 @@ class FailureLogger {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.FailureLogger = FailureLogger;
+if (typeof window !== "undefined") window.FailureLogger = FailureLogger;
+if (typeof module !== "undefined" && module.exports) module.exports = FailureLogger;

@@ -990,3 +990,7 @@ class ProjectFloatingTreeLauncher {
     }
   }
 }
+
+globalThis.ProjectFloatingTreeLauncher = ProjectFloatingTreeLauncher;
+if (typeof window !== "undefined") window.ProjectFloatingTreeLauncher = ProjectFloatingTreeLauncher;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFloatingTreeLauncher;

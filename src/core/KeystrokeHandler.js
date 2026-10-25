@@ -283,3 +283,13 @@ class KeystrokeHandler {
 
 }
 
+
+
+globalThis.KeystrokeHandler = KeystrokeHandler;
+if (typeof window !== "undefined") window.KeystrokeHandler = KeystrokeHandler;
+if (typeof module !== "undefined" && module.exports) module.exports = KeystrokeHandler;
+
+
+globalThis.usually = usually;
+if (typeof window !== "undefined") window.usually = usually;
+if (typeof module !== "undefined" && module.exports) module.exports = usually;

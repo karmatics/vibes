@@ -116,3 +116,8 @@ class ClipboardCatcherWidget {
 
 }
 
+
+
+globalThis.ClipboardCatcherWidget = ClipboardCatcherWidget;
+if (typeof window !== "undefined") window.ClipboardCatcherWidget = ClipboardCatcherWidget;
+if (typeof module !== "undefined" && module.exports) module.exports = ClipboardCatcherWidget;

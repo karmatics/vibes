@@ -33,3 +33,8 @@ class ManagedMetadata {
   }
 
 }
+
+
+globalThis.ManagedMetadata = ManagedMetadata;
+if (typeof window !== "undefined") window.ManagedMetadata = ManagedMetadata;
+if (typeof module !== "undefined" && module.exports) module.exports = ManagedMetadata;

@@ -611,3 +611,12 @@ class UndoTimelineDialog {
       return `${count} ${count === 1 ? singular : plural}`;
     }
 }
+
+globalThis.UndoTimelineDialog = UndoTimelineDialog;
+if (typeof window !== "undefined") window.UndoTimelineDialog = UndoTimelineDialog;
+if (typeof module !== "undefined" && module.exports) module.exports = UndoTimelineDialog;
+
+
+globalThis.Dummy = Dummy;
+if (typeof window !== "undefined") window.Dummy = Dummy;
+if (typeof module !== "undefined" && module.exports) module.exports = Dummy;

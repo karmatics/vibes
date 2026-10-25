@@ -201,3 +201,7 @@ class ProjectFilesEditorBridge {
     }
 
 }
+
+globalThis.ProjectFilesEditorBridge = ProjectFilesEditorBridge;
+if (typeof window !== "undefined") window.ProjectFilesEditorBridge = ProjectFilesEditorBridge;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesEditorBridge;

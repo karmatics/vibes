@@ -281,3 +281,8 @@ class LocalDirSessionManager {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.LocalDirSessionManager = LocalDirSessionManager;
+if (typeof window !== "undefined") window.LocalDirSessionManager = LocalDirSessionManager;
+if (typeof module !== "undefined" && module.exports) module.exports = LocalDirSessionManager;

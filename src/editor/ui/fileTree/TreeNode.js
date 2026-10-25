@@ -479,3 +479,12 @@ class TreeNode {
       return this._doc();
     }
 }
+
+globalThis.TreeNode = TreeNode;
+if (typeof window !== "undefined") window.TreeNode = TreeNode;
+if (typeof module !== "undefined" && module.exports) module.exports = TreeNode;
+
+
+globalThis.lists = lists;
+if (typeof window !== "undefined") window.lists = lists;
+if (typeof module !== "undefined" && module.exports) module.exports = lists;

@@ -13,3 +13,7 @@ class DebugFolderMeta {
     };
   }
 }
+
+globalThis.DebugFolderMeta = DebugFolderMeta;
+if (typeof window !== "undefined") window.DebugFolderMeta = DebugFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = DebugFolderMeta;

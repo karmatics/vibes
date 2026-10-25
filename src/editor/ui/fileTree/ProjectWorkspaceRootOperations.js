@@ -291,3 +291,7 @@ class ProjectWorkspaceRootOperations {
     }
 
 }
+
+globalThis.ProjectWorkspaceRootOperations = ProjectWorkspaceRootOperations;
+if (typeof window !== "undefined") window.ProjectWorkspaceRootOperations = ProjectWorkspaceRootOperations;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectWorkspaceRootOperations;

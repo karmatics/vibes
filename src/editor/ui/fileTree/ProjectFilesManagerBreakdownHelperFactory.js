@@ -412,3 +412,7 @@ class ProjectFilesManagerBreakdownHelperFactory {
       return null;
     }
 }
+
+globalThis.ProjectFilesManagerBreakdownHelperFactory = ProjectFilesManagerBreakdownHelperFactory;
+if (typeof window !== "undefined") window.ProjectFilesManagerBreakdownHelperFactory = ProjectFilesManagerBreakdownHelperFactory;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesManagerBreakdownHelperFactory;

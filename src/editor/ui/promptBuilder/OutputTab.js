@@ -1115,3 +1115,22 @@ class OutputTab {
     return `## Magic Send\n\nInstead of relying on the OS clipboard, \`OutputTab\` features a "Magic Send" integration. It routes the LLM's raw response directly into the \`LlmQueueManager\` (or an active \`ClipboardCatcherWidget\`), instantly triggering the unified write protocol and opening the visual diff review dialog.`;
   }
 }
+
+globalThis.OutputTab = OutputTab;
+if (typeof window !== "undefined") window.OutputTab = OutputTab;
+if (typeof module !== "undefined" && module.exports) module.exports = OutputTab;
+
+
+globalThis.boundaries = boundaries;
+if (typeof window !== "undefined") window.boundaries = boundaries;
+if (typeof module !== "undefined" && module.exports) module.exports = boundaries;
+
+
+globalThis.Foo = Foo;
+if (typeof window !== "undefined") window.Foo = Foo;
+if (typeof module !== "undefined" && module.exports) module.exports = Foo;
+
+
+globalThis.or = or;
+if (typeof window !== "undefined") window.or = or;
+if (typeof module !== "undefined" && module.exports) module.exports = or;

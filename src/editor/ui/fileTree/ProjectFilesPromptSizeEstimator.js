@@ -180,3 +180,7 @@ class ProjectFilesPromptSizeEstimator {
   }
 
 }
+
+globalThis.ProjectFilesPromptSizeEstimator = ProjectFilesPromptSizeEstimator;
+if (typeof window !== "undefined") window.ProjectFilesPromptSizeEstimator = ProjectFilesPromptSizeEstimator;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesPromptSizeEstimator;

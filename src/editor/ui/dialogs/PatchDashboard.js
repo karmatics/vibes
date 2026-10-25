@@ -339,3 +339,7 @@ class PatchDashboard {
     }
   }
 }
+
+globalThis.PatchDashboard = PatchDashboard;
+if (typeof window !== "undefined") window.PatchDashboard = PatchDashboard;
+if (typeof module !== "undefined" && module.exports) module.exports = PatchDashboard;

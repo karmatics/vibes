@@ -2539,3 +2539,67 @@ ensureImport(filePathOrName, importStatement) {
     return { ok: false, error: 'Commands not loaded' };
   }
 }
+
+globalThis.VibesEnv = VibesEnv;
+if (typeof window !== "undefined") window.VibesEnv = VibesEnv;
+if (typeof module !== "undefined" && module.exports) module.exports = VibesEnv;
+
+
+globalThis.using = using;
+if (typeof window !== "undefined") window.using = using;
+if (typeof module !== "undefined" && module.exports) module.exports = using;
+
+
+globalThis.rename = rename;
+if (typeof window !== "undefined") window.rename = rename;
+if (typeof module !== "undefined" && module.exports) module.exports = rename;
+
+
+globalThis.capsule = capsule;
+if (typeof window !== "undefined") window.capsule = capsule;
+if (typeof module !== "undefined" && module.exports) module.exports = capsule;
+
+
+globalThis.VisibilitySetsCapsule = VisibilitySetsCapsule;
+if (typeof window !== "undefined") window.VisibilitySetsCapsule = VisibilitySetsCapsule;
+if (typeof module !== "undefined" && module.exports) module.exports = VisibilitySetsCapsule;
+
+
+globalThis.not = not;
+if (typeof window !== "undefined") window.not = not;
+if (typeof module !== "undefined" && module.exports) module.exports = not;
+
+
+globalThis.__VisibilitySetEvalWrapper = __VisibilitySetEvalWrapper;
+if (typeof window !== "undefined") window.__VisibilitySetEvalWrapper = __VisibilitySetEvalWrapper;
+if (typeof module !== "undefined" && module.exports) module.exports = __VisibilitySetEvalWrapper;
+
+
+globalThis.X = X;
+if (typeof window !== "undefined") window.X = X;
+if (typeof module !== "undefined" && module.exports) module.exports = X;
+
+
+globalThis.block = block;
+if (typeof window !== "undefined") window.block = block;
+if (typeof module !== "undefined" && module.exports) module.exports = block;
+
+
+globalThis.$ = $;
+if (typeof window !== "undefined") window.$ = $;
+if (typeof module !== "undefined" && module.exports) module.exports = $;
+
+
+globalThis.name = name;
+if (typeof window !== "undefined") window.name = name;
+if (typeof module !== "undefined" && module.exports) module.exports = name;
+
+
+globalThis._W_ = _W_;
+if (typeof window !== "undefined") window._W_ = _W_;
+if (typeof module !== "undefined" && module.exports) module.exports = _W_;
+
+
+globalThis.source = source;
+if (typeof window !== "undefined") window.source = source;
+if (typeof module !== "undefined" && module.exports) module.exports = source;

@@ -22,3 +22,8 @@ class ManagedSeedAgentMigrationNotes {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.ManagedSeedAgentMigrationNotes = ManagedSeedAgentMigrationNotes;
+if (typeof window !== "undefined") window.ManagedSeedAgentMigrationNotes = ManagedSeedAgentMigrationNotes;
+if (typeof module !== "undefined" && module.exports) module.exports = ManagedSeedAgentMigrationNotes;

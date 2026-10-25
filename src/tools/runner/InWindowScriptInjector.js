@@ -1834,3 +1834,27 @@ class InWindowScriptInjector {
       }
     }
 }
+
+globalThis.InWindowScriptInjector = InWindowScriptInjector;
+if (typeof window !== "undefined") window.InWindowScriptInjector = InWindowScriptInjector;
+if (typeof module !== "undefined" && module.exports) module.exports = InWindowScriptInjector;
+
+
+globalThis.missing = missing;
+if (typeof window !== "undefined") window.missing = missing;
+if (typeof module !== "undefined" && module.exports) module.exports = missing;
+
+
+globalThis.__VibesHotPatch__ = __VibesHotPatch__;
+if (typeof window !== "undefined") window.__VibesHotPatch__ = __VibesHotPatch__;
+if (typeof module !== "undefined" && module.exports) module.exports = __VibesHotPatch__;
+
+
+globalThis.info = info;
+if (typeof window !== "undefined") window.info = info;
+if (typeof module !== "undefined" && module.exports) module.exports = info;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;

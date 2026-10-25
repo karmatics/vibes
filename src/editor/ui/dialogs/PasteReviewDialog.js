@@ -959,3 +959,8 @@ class PasteReviewDialog {
     }
 }
 
+
+
+globalThis.PasteReviewDialog = PasteReviewDialog;
+if (typeof window !== "undefined") window.PasteReviewDialog = PasteReviewDialog;
+if (typeof module !== "undefined" && module.exports) module.exports = PasteReviewDialog;

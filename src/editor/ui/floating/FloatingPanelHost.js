@@ -1532,3 +1532,7 @@ class FloatingPanelHost {
        }
     }
 }
+
+globalThis.FloatingPanelHost = FloatingPanelHost;
+if (typeof window !== "undefined") window.FloatingPanelHost = FloatingPanelHost;
+if (typeof module !== "undefined" && module.exports) module.exports = FloatingPanelHost;

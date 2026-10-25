@@ -1076,3 +1076,8 @@ class AppUIManager {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.AppUIManager = AppUIManager;
+if (typeof window !== "undefined") window.AppUIManager = AppUIManager;
+if (typeof module !== "undefined" && module.exports) module.exports = AppUIManager;

@@ -405,3 +405,7 @@ class ProjectFileTreeDataBuilder {
   }
 
 }
+
+globalThis.ProjectFileTreeDataBuilder = ProjectFileTreeDataBuilder;
+if (typeof window !== "undefined") window.ProjectFileTreeDataBuilder = ProjectFileTreeDataBuilder;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFileTreeDataBuilder;

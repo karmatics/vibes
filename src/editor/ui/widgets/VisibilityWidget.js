@@ -839,3 +839,13 @@ class VisibilityWidget {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.VisibilityWidget = VisibilityWidget;
+if (typeof window !== "undefined") window.VisibilityWidget = VisibilityWidget;
+if (typeof module !== "undefined" && module.exports) module.exports = VisibilityWidget;
+
+
+globalThis.methods = methods;
+if (typeof window !== "undefined") window.methods = methods;
+if (typeof module !== "undefined" && module.exports) module.exports = methods;

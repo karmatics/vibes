@@ -510,3 +510,23 @@ class EditorDataHandler {
   
 }
 
+
+
+globalThis.EditorDataHandler = EditorDataHandler;
+if (typeof window !== "undefined") window.EditorDataHandler = EditorDataHandler;
+if (typeof module !== "undefined" && module.exports) module.exports = EditorDataHandler;
+
+
+globalThis.or = or;
+if (typeof window !== "undefined") window.or = or;
+if (typeof module !== "undefined" && module.exports) module.exports = or;
+
+
+globalThis.name = name;
+if (typeof window !== "undefined") window.name = name;
+if (typeof module !== "undefined" && module.exports) module.exports = name;
+
+
+globalThis.body = body;
+if (typeof window !== "undefined") window.body = body;
+if (typeof module !== "undefined" && module.exports) module.exports = body;

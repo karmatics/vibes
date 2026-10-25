@@ -219,3 +219,8 @@ class LibraryManagerDialog {
 
 }
 
+
+
+globalThis.LibraryManagerDialog = LibraryManagerDialog;
+if (typeof window !== "undefined") window.LibraryManagerDialog = LibraryManagerDialog;
+if (typeof module !== "undefined" && module.exports) module.exports = LibraryManagerDialog;

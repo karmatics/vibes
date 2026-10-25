@@ -49,3 +49,8 @@ class SystemMonitorWidget {
     }
 }
 
+
+
+globalThis.SystemMonitorWidget = SystemMonitorWidget;
+if (typeof window !== "undefined") window.SystemMonitorWidget = SystemMonitorWidget;
+if (typeof module !== "undefined" && module.exports) module.exports = SystemMonitorWidget;

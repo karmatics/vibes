@@ -462,3 +462,7 @@ class ProjectFilesPromptBundleBuilder {
   }
 
 }
+
+globalThis.ProjectFilesPromptBundleBuilder = ProjectFilesPromptBundleBuilder;
+if (typeof window !== "undefined") window.ProjectFilesPromptBundleBuilder = ProjectFilesPromptBundleBuilder;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesPromptBundleBuilder;

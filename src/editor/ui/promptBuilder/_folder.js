@@ -11,3 +11,7 @@ class PromptBuilderFolderMeta {
     };
   }
 }
+
+globalThis.PromptBuilderFolderMeta = PromptBuilderFolderMeta;
+if (typeof window !== "undefined") window.PromptBuilderFolderMeta = PromptBuilderFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = PromptBuilderFolderMeta;

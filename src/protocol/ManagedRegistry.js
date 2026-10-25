@@ -45,3 +45,8 @@ class ManagedRegistry {
   }
 
 }
+
+
+globalThis.ManagedRegistry = ManagedRegistry;
+if (typeof window !== "undefined") window.ManagedRegistry = ManagedRegistry;
+if (typeof module !== "undefined" && module.exports) module.exports = ManagedRegistry;

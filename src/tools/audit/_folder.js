@@ -10,3 +10,7 @@ class AuditFolderMeta {
     };
   }
 }
+
+globalThis.AuditFolderMeta = AuditFolderMeta;
+if (typeof window !== "undefined") window.AuditFolderMeta = AuditFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = AuditFolderMeta;

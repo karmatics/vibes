@@ -1224,3 +1224,7 @@ async loadStaticProjectFromServerFiles() {
       throw new Error('[ProjectLoader] Could not load project manifest from luno.json or files.json');
     }
 }
+
+globalThis.ProjectLoader = ProjectLoader;
+if (typeof window !== "undefined") window.ProjectLoader = ProjectLoader;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectLoader;

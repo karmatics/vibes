@@ -263,3 +263,7 @@ class ProjectFloatingTreeStoreDialogController {
       return null;
     }
 }
+
+globalThis.ProjectFloatingTreeStoreDialogController = ProjectFloatingTreeStoreDialogController;
+if (typeof window !== "undefined") window.ProjectFloatingTreeStoreDialogController = ProjectFloatingTreeStoreDialogController;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFloatingTreeStoreDialogController;

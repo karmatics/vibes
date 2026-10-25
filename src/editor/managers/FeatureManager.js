@@ -87,3 +87,8 @@ class FeatureManager {
     }
 }
 
+
+
+globalThis.FeatureManager = FeatureManager;
+if (typeof window !== "undefined") window.FeatureManager = FeatureManager;
+if (typeof module !== "undefined" && module.exports) module.exports = FeatureManager;

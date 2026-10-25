@@ -75,3 +75,8 @@ class TreeWalkerPlaygroundScripts {
   }
 
 }
+
+
+globalThis.TreeWalkerPlaygroundScripts = TreeWalkerPlaygroundScripts;
+if (typeof window !== "undefined") window.TreeWalkerPlaygroundScripts = TreeWalkerPlaygroundScripts;
+if (typeof module !== "undefined" && module.exports) module.exports = TreeWalkerPlaygroundScripts;

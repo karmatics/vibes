@@ -16,3 +16,7 @@ class ManagersFolderMeta {
     };
   }
 }
+
+globalThis.ManagersFolderMeta = ManagersFolderMeta;
+if (typeof window !== "undefined") window.ManagersFolderMeta = ManagersFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = ManagersFolderMeta;

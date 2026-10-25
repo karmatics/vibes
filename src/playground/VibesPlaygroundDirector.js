@@ -1237,3 +1237,28 @@ _colorPulseMathSource() {
   }
 
 }
+
+
+globalThis.VibesPlaygroundDirector = VibesPlaygroundDirector;
+if (typeof window !== "undefined") window.VibesPlaygroundDirector = VibesPlaygroundDirector;
+if (typeof module !== "undefined" && module.exports) module.exports = VibesPlaygroundDirector;
+
+
+globalThis.PlaygroundRuntime = PlaygroundRuntime;
+if (typeof window !== "undefined") window.PlaygroundRuntime = PlaygroundRuntime;
+if (typeof module !== "undefined" && module.exports) module.exports = PlaygroundRuntime;
+
+
+globalThis.used = used;
+if (typeof window !== "undefined") window.used = used;
+if (typeof module !== "undefined" && module.exports) module.exports = used;
+
+
+globalThis.SparkToy = SparkToy;
+if (typeof window !== "undefined") window.SparkToy = SparkToy;
+if (typeof module !== "undefined" && module.exports) module.exports = SparkToy;
+
+
+globalThis.ColorPulseMath = ColorPulseMath;
+if (typeof window !== "undefined") window.ColorPulseMath = ColorPulseMath;
+if (typeof module !== "undefined" && module.exports) module.exports = ColorPulseMath;

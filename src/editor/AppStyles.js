@@ -1105,3 +1105,13 @@ ${rootVars}
     }
 }
 
+
+
+globalThis.AppStyles = AppStyles;
+if (typeof window !== "undefined") window.AppStyles = AppStyles;
+if (typeof module !== "undefined" && module.exports) module.exports = AppStyles;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;

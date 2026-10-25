@@ -200,3 +200,8 @@ class FileLogDialog {
     }
 }
 
+
+
+globalThis.FileLogDialog = FileLogDialog;
+if (typeof window !== "undefined") window.FileLogDialog = FileLogDialog;
+if (typeof module !== "undefined" && module.exports) module.exports = FileLogDialog;

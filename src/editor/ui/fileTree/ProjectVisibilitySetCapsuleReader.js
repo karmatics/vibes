@@ -531,3 +531,17 @@ class ProjectVisibilitySetCapsuleReader {
   }
 
 }
+
+globalThis.ProjectVisibilitySetCapsuleReader = ProjectVisibilitySetCapsuleReader;
+if (typeof window !== "undefined") window.ProjectVisibilitySetCapsuleReader = ProjectVisibilitySetCapsuleReader;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectVisibilitySetCapsuleReader;
+
+
+globalThis.__VisibilitySetEvalWrapper = __VisibilitySetEvalWrapper;
+if (typeof window !== "undefined") window.__VisibilitySetEvalWrapper = __VisibilitySetEvalWrapper;
+if (typeof module !== "undefined" && module.exports) module.exports = __VisibilitySetEvalWrapper;
+
+
+globalThis.X = X;
+if (typeof window !== "undefined") window.X = X;
+if (typeof module !== "undefined" && module.exports) module.exports = X;

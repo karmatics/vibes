@@ -7646,3 +7646,25 @@ async _attachFolderMetaCapsulesFromWorkspaceStores() {
       return true;
     }
 }
+
+globalThis.ProjectFilesManager = ProjectFilesManager;
+if (typeof window !== "undefined") window.ProjectFilesManager = ProjectFilesManager;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesManager;
+
+
+globalThis.body = body;
+if (typeof window !== "undefined") window.body = body;
+if (typeof module !== "undefined" && module.exports) module.exports = body;
+
+
+globalThis.methods = methods;
+if (typeof window !== "undefined") window.methods = methods;
+if (typeof module !== "undefined" && module.exports) module.exports = methods;
+globalThis.name = name;
+if (typeof window !== "undefined") window.name = name;
+if (typeof module !== "undefined" && module.exports) module.exports = name;
+
+
+globalThis.expose = expose;
+if (typeof window !== "undefined") window.expose = expose;
+if (typeof module !== "undefined" && module.exports) module.exports = expose;

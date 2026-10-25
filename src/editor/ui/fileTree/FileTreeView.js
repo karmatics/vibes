@@ -3798,3 +3798,8 @@ class FileTreeView {
     }
 }
 
+
+
+globalThis.FileTreeView = FileTreeView;
+if (typeof window !== "undefined") window.FileTreeView = FileTreeView;
+if (typeof module !== "undefined" && module.exports) module.exports = FileTreeView;

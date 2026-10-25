@@ -269,3 +269,8 @@ class ReportManager {
     }
 }
 
+
+
+globalThis.ReportManager = ReportManager;
+if (typeof window !== "undefined") window.ReportManager = ReportManager;
+if (typeof module !== "undefined" && module.exports) module.exports = ReportManager;

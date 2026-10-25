@@ -524,3 +524,8 @@ class WriteAuditViewerApp {
   }
 
 }
+
+
+globalThis.WriteAuditViewerApp = WriteAuditViewerApp;
+if (typeof window !== "undefined") window.WriteAuditViewerApp = WriteAuditViewerApp;
+if (typeof module !== "undefined" && module.exports) module.exports = WriteAuditViewerApp;

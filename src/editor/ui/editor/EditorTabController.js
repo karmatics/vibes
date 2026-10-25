@@ -813,3 +813,7 @@ It supports standard files, structured classes, binary assets (images), and floa
 The EditorTabController is the state machine behind an open editor tab. It manages the file loading pipeline, handles local undo/redo stacks, tracks file-dirty states, and coordinates layout repaints. It supports standard files, structured classes, binary assets (images), and floating external workspace files.`;
   }
 }
+
+globalThis.EditorTabController = EditorTabController;
+if (typeof window !== "undefined") window.EditorTabController = EditorTabController;
+if (typeof module !== "undefined" && module.exports) module.exports = EditorTabController;

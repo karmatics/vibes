@@ -480,3 +480,7 @@ class ProjectVisibilityToolbarTools {
       return null;
     }
 }
+
+globalThis.ProjectVisibilityToolbarTools = ProjectVisibilityToolbarTools;
+if (typeof window !== "undefined") window.ProjectVisibilityToolbarTools = ProjectVisibilityToolbarTools;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectVisibilityToolbarTools;

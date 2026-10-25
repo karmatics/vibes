@@ -874,3 +874,7 @@ FloatingEditorWindow implements a self-contained, draggable editor that exists o
       setTimeout(() => this._saveWorkspaceState(), 100);
     }
 }
+
+globalThis.FloatingEditorWindow = FloatingEditorWindow;
+if (typeof window !== "undefined") window.FloatingEditorWindow = FloatingEditorWindow;
+if (typeof module !== "undefined" && module.exports) module.exports = FloatingEditorWindow;

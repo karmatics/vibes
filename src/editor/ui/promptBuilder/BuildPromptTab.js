@@ -2320,3 +2320,17 @@ class BuildPromptTab {
   }
 
 }
+
+globalThis.BuildPromptTab = BuildPromptTab;
+if (typeof window !== "undefined") window.BuildPromptTab = BuildPromptTab;
+if (typeof module !== "undefined" && module.exports) module.exports = BuildPromptTab;
+
+
+globalThis.Temp = Temp;
+if (typeof window !== "undefined") window.Temp = Temp;
+if (typeof module !== "undefined" && module.exports) module.exports = Temp;
+
+
+globalThis.$ = $;
+if (typeof window !== "undefined") window.$ = $;
+if (typeof module !== "undefined" && module.exports) module.exports = $;

@@ -205,3 +205,8 @@ class AppearanceAnimator {
     }
 }
 
+
+
+globalThis.AppearanceAnimator = AppearanceAnimator;
+if (typeof window !== "undefined") window.AppearanceAnimator = AppearanceAnimator;
+if (typeof module !== "undefined" && module.exports) module.exports = AppearanceAnimator;

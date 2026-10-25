@@ -47,3 +47,8 @@ class PendingTaskManager {
     }
 }
 
+
+
+globalThis.PendingTaskManager = PendingTaskManager;
+if (typeof window !== "undefined") window.PendingTaskManager = PendingTaskManager;
+if (typeof module !== "undefined" && module.exports) module.exports = PendingTaskManager;

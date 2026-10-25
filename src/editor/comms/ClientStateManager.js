@@ -176,3 +176,7 @@ async prepareRunnerPayload() {
     }
 
 }
+
+globalThis.ClientStateManager = ClientStateManager;
+if (typeof window !== "undefined") window.ClientStateManager = ClientStateManager;
+if (typeof module !== "undefined" && module.exports) module.exports = ClientStateManager;

@@ -987,3 +987,7 @@ class DocumentToCapsuleWalker {
   }
 
 }
+
+globalThis.DocumentToCapsuleWalker = DocumentToCapsuleWalker;
+if (typeof window !== "undefined") window.DocumentToCapsuleWalker = DocumentToCapsuleWalker;
+if (typeof module !== "undefined" && module.exports) module.exports = DocumentToCapsuleWalker;

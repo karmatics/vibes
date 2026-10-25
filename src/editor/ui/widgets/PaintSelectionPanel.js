@@ -737,3 +737,7 @@ class PaintSelectionPanel {
       return "### PaintSelectionPanel\n\nA floating panel that provides tools for painting and bulk-editing the prompt visibility state of files in the workspace.";
     }
 }
+
+globalThis.PaintSelectionPanel = PaintSelectionPanel;
+if (typeof window !== "undefined") window.PaintSelectionPanel = PaintSelectionPanel;
+if (typeof module !== "undefined" && module.exports) module.exports = PaintSelectionPanel;

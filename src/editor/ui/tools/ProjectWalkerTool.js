@@ -484,3 +484,17 @@ if (ctx.type === 'file') {
   _walkerLogReadFallback(operation, path, error) {    const message = error && error.message ? error.message : String(error);    if (this.app && typeof this.app.logFileOp === "function") {      this.app.logFileOp("debug", "ProjectWalkerTool VFS read fallback", {        operation,        path,        error: message      });      return;    }    if (this.app?.fileLogger && typeof this.app.fileLogger.log === "function") {      this.app.fileLogger.log("debug", "ProjectWalkerTool VFS read fallback", {        operation,        path,        error: message      });    }  }
 
 }
+
+globalThis.ProjectWalkerTool = ProjectWalkerTool;
+if (typeof window !== "undefined") window.ProjectWalkerTool = ProjectWalkerTool;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectWalkerTool;
+
+
+globalThis.file = file;
+if (typeof window !== "undefined") window.file = file;
+if (typeof module !== "undefined" && module.exports) module.exports = file;
+
+
+globalThis.here = here;
+if (typeof window !== "undefined") window.here = here;
+if (typeof module !== "undefined" && module.exports) module.exports = here;

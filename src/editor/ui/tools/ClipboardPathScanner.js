@@ -317,3 +317,7 @@ class ClipboardPathScanner {
       app.uiManager?.setStatus(`Extracted ${paths.length} file(s) to Output Tab.`);
     }
 }
+
+globalThis.ClipboardPathScanner = ClipboardPathScanner;
+if (typeof window !== "undefined") window.ClipboardPathScanner = ClipboardPathScanner;
+if (typeof module !== "undefined" && module.exports) module.exports = ClipboardPathScanner;

@@ -84,3 +84,18 @@ class PromptInjector {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.PromptInjector = PromptInjector;
+if (typeof window !== "undefined") window.PromptInjector = PromptInjector;
+if (typeof module !== "undefined" && module.exports) module.exports = PromptInjector;
+
+
+globalThis.block = block;
+if (typeof window !== "undefined") window.block = block;
+if (typeof module !== "undefined" && module.exports) module.exports = block;
+
+
+globalThis.ClassName = ClassName;
+if (typeof window !== "undefined") window.ClassName = ClassName;
+if (typeof module !== "undefined" && module.exports) module.exports = ClassName;

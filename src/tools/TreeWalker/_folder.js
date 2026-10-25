@@ -10,3 +10,7 @@ class TreeWalkerFolderMeta {
     };
   }
 }
+
+globalThis.TreeWalkerFolderMeta = TreeWalkerFolderMeta;
+if (typeof window !== "undefined") window.TreeWalkerFolderMeta = TreeWalkerFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = TreeWalkerFolderMeta;

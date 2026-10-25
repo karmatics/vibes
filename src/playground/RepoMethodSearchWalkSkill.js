@@ -275,3 +275,8 @@ class RepoMethodSearchWalkSkill {
       }
 
 }
+
+
+globalThis.RepoMethodSearchWalkSkill = RepoMethodSearchWalkSkill;
+if (typeof window !== "undefined") window.RepoMethodSearchWalkSkill = RepoMethodSearchWalkSkill;
+if (typeof module !== "undefined" && module.exports) module.exports = RepoMethodSearchWalkSkill;

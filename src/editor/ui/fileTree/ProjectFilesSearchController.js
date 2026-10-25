@@ -304,3 +304,7 @@ class ProjectFilesSearchController {
   }
 
 }
+
+globalThis.ProjectFilesSearchController = ProjectFilesSearchController;
+if (typeof window !== "undefined") window.ProjectFilesSearchController = ProjectFilesSearchController;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesSearchController;

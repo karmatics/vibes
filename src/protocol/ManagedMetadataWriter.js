@@ -215,3 +215,13 @@ It ensures code purity by cleaning up old metadata segments within active source
     return [this._doc_overview(), this._doc_stripping()].join('\n\n');
   }
 }
+
+
+globalThis.ManagedMetadataWriter = ManagedMetadataWriter;
+if (typeof window !== "undefined") window.ManagedMetadataWriter = ManagedMetadataWriter;
+if (typeof module !== "undefined" && module.exports) module.exports = ManagedMetadataWriter;
+
+
+globalThis.body = body;
+if (typeof window !== "undefined") window.body = body;
+if (typeof module !== "undefined" && module.exports) module.exports = body;

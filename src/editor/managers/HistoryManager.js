@@ -451,3 +451,12 @@ HistoryManager is the chronological archiver and database transaction manager fo
       return true;
     }
 }
+
+globalThis.HistoryManager = HistoryManager;
+if (typeof window !== "undefined") window.HistoryManager = HistoryManager;
+if (typeof module !== "undefined" && module.exports) module.exports = HistoryManager;
+
+
+globalThis.Dummy = Dummy;
+if (typeof window !== "undefined") window.Dummy = Dummy;
+if (typeof module !== "undefined" && module.exports) module.exports = Dummy;

@@ -379,3 +379,18 @@ It grades files based on their structural layouts to protect project integrity.`
 ManagedClassValidator enforces the 'Pure Class Constraint' in Vibes (1 File = 1 Class = Exact Same Name, no top-level variables, no loose imports/exports). It grades files based on their structural layouts to protect project integrity, preventing structural regressions and code rot.`;
     }
 }
+
+
+globalThis.ManagedClassValidator = ManagedClassValidator;
+if (typeof window !== "undefined") window.ManagedClassValidator = ManagedClassValidator;
+if (typeof module !== "undefined" && module.exports) module.exports = ManagedClassValidator;
+
+
+globalThis.ASTs = ASTs;
+if (typeof window !== "undefined") window.ASTs = ASTs;
+if (typeof module !== "undefined" && module.exports) module.exports = ASTs;
+
+
+globalThis.members = members;
+if (typeof window !== "undefined") window.members = members;
+if (typeof module !== "undefined" && module.exports) module.exports = members;

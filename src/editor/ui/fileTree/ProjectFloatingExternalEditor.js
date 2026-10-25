@@ -331,3 +331,7 @@ class ProjectFloatingExternalEditor {
   }
 
 }
+
+globalThis.ProjectFloatingExternalEditor = ProjectFloatingExternalEditor;
+if (typeof window !== "undefined") window.ProjectFloatingExternalEditor = ProjectFloatingExternalEditor;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFloatingExternalEditor;

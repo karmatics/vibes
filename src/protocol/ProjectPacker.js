@@ -518,3 +518,13 @@ ProjectPacker bundles an entire Vibes project into a single, standalone HTML fil
     }
 }
 
+
+
+globalThis.ProjectPacker = ProjectPacker;
+if (typeof window !== "undefined") window.ProjectPacker = ProjectPacker;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectPacker;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;

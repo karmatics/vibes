@@ -59,3 +59,8 @@ class ProjectAnalysisManager {
     }
 }
 
+
+
+globalThis.ProjectAnalysisManager = ProjectAnalysisManager;
+if (typeof window !== "undefined") window.ProjectAnalysisManager = ProjectAnalysisManager;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectAnalysisManager;

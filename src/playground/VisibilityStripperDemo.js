@@ -127,3 +127,13 @@ class VisibilityStripperDemo {
 
 }
 if (typeof window !== 'undefined') window.VisibilityStripperDemo = VisibilityStripperDemo;
+
+
+globalThis.VisibilityStripperDemo = VisibilityStripperDemo;
+if (typeof window !== "undefined") window.VisibilityStripperDemo = VisibilityStripperDemo;
+if (typeof module !== "undefined" && module.exports) module.exports = VisibilityStripperDemo;
+
+
+globalThis.DemoClass = DemoClass;
+if (typeof window !== "undefined") window.DemoClass = DemoClass;
+if (typeof module !== "undefined" && module.exports) module.exports = DemoClass;

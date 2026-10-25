@@ -1,0 +1,5 @@
+{
+  "task": "verify_and_align_vibes_index_html",
+  "target": "vibes",
+  "status": "inspecting_shell_and_entrypoint"
+}

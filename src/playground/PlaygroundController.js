@@ -384,3 +384,23 @@ class PlaygroundController {
     }
 }
 
+
+
+globalThis.PlaygroundController = PlaygroundController;
+if (typeof window !== "undefined") window.PlaygroundController = PlaygroundController;
+if (typeof module !== "undefined" && module.exports) module.exports = PlaygroundController;
+
+
+globalThis.SimulatorCreated = SimulatorCreated;
+if (typeof window !== "undefined") window.SimulatorCreated = SimulatorCreated;
+if (typeof module !== "undefined" && module.exports) module.exports = SimulatorCreated;
+
+
+globalThis.VisibilityStripperDemo = VisibilityStripperDemo;
+if (typeof window !== "undefined") window.VisibilityStripperDemo = VisibilityStripperDemo;
+if (typeof module !== "undefined" && module.exports) module.exports = VisibilityStripperDemo;
+
+
+globalThis.DemoClass = DemoClass;
+if (typeof window !== "undefined") window.DemoClass = DemoClass;
+if (typeof module !== "undefined" && module.exports) module.exports = DemoClass;

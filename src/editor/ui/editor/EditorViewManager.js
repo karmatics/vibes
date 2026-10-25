@@ -1645,3 +1645,13 @@ class EditorViewManager {
     }
 }
 
+
+
+globalThis.EditorViewManager = EditorViewManager;
+if (typeof window !== "undefined") window.EditorViewManager = EditorViewManager;
+if (typeof module !== "undefined" && module.exports) module.exports = EditorViewManager;
+
+
+globalThis.Exports = Exports;
+if (typeof window !== "undefined") window.Exports = Exports;
+if (typeof module !== "undefined" && module.exports) module.exports = Exports;

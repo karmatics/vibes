@@ -299,3 +299,7 @@ It acts as a buffer, debouncing and batching incoming text streams to prevent ov
 
   
 }
+
+globalThis.LlmQueueManager = LlmQueueManager;
+if (typeof window !== "undefined") window.LlmQueueManager = LlmQueueManager;
+if (typeof module !== "undefined" && module.exports) module.exports = LlmQueueManager;

@@ -248,3 +248,7 @@ PatchManager coordinates write routing and local-storage patch layers. It determ
 The philosophy is non-destructive browser-first editing. When a user runs Vibes over read-only baseline files, they can apply method-level patches that are safely saved in browser IndexedDB (\`VibesPatchStore\`). These patches are reconstructed on the fly and can be promoted to clean local disk folders at any time, allowing frictionless project iteration without backend servers.`;
     }
 }
+
+globalThis.PatchManager = PatchManager;
+if (typeof window !== "undefined") window.PatchManager = PatchManager;
+if (typeof module !== "undefined" && module.exports) module.exports = PatchManager;

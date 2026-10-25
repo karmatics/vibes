@@ -498,3 +498,13 @@ async saveFileMetadata(metadata) {
     }
 }
 
+
+
+globalThis.DocumentationManager = DocumentationManager;
+if (typeof window !== "undefined") window.DocumentationManager = DocumentationManager;
+if (typeof module !== "undefined" && module.exports) module.exports = DocumentationManager;
+
+
+globalThis.methods = methods;
+if (typeof window !== "undefined") window.methods = methods;
+if (typeof module !== "undefined" && module.exports) module.exports = methods;

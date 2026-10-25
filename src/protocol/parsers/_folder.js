@@ -11,3 +11,7 @@ class ParsersFolderMeta {
     };
   }
 }
+
+globalThis.ParsersFolderMeta = ParsersFolderMeta;
+if (typeof window !== "undefined") window.ParsersFolderMeta = ParsersFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = ParsersFolderMeta;

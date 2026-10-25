@@ -223,3 +223,8 @@ class FileSearchWidget {
 
 }
 
+
+
+globalThis.FileSearchWidget = FileSearchWidget;
+if (typeof window !== "undefined") window.FileSearchWidget = FileSearchWidget;
+if (typeof module !== "undefined" && module.exports) module.exports = FileSearchWidget;

@@ -97,3 +97,37 @@ class CodeFormatter {
   }
 
 }
+
+globalThis.CodeFormatter = CodeFormatter;
+if (typeof window !== "undefined") window.CodeFormatter = CodeFormatter;
+if (typeof module !== "undefined" && module.exports) module.exports = CodeFormatter;
+
+
+globalThis._WRAPPER_ = _WRAPPER_;
+if (typeof window !== "undefined") window._WRAPPER_ = _WRAPPER_;
+if (typeof module !== "undefined" && module.exports) module.exports = _WRAPPER_;
+
+
+globalThis.methods = methods;
+if (typeof window !== "undefined") window.methods = methods;
+if (typeof module !== "undefined" && module.exports) module.exports = methods;
+
+
+globalThis.intercepts = intercepts;
+if (typeof window !== "undefined") window.intercepts = intercepts;
+if (typeof module !== "undefined" && module.exports) module.exports = intercepts;
+
+
+globalThis.to = to;
+if (typeof window !== "undefined") window.to = to;
+if (typeof module !== "undefined" && module.exports) module.exports = to;
+
+
+globalThis.block = block;
+if (typeof window !== "undefined") window.block = block;
+if (typeof module !== "undefined" && module.exports) module.exports = block;
+
+
+globalThis.header = header;
+if (typeof window !== "undefined") window.header = header;
+if (typeof module !== "undefined" && module.exports) module.exports = header;

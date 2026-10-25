@@ -284,3 +284,8 @@ class VibesPatchStore {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.VibesPatchStore = VibesPatchStore;
+if (typeof window !== "undefined") window.VibesPatchStore = VibesPatchStore;
+if (typeof module !== "undefined" && module.exports) module.exports = VibesPatchStore;

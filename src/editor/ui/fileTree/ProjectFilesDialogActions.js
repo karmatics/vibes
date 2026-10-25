@@ -124,3 +124,7 @@ class ProjectFilesDialogActions {
   }
 
 }
+
+globalThis.ProjectFilesDialogActions = ProjectFilesDialogActions;
+if (typeof window !== "undefined") window.ProjectFilesDialogActions = ProjectFilesDialogActions;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectFilesDialogActions;

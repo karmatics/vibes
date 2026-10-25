@@ -12,3 +12,7 @@ class CoreFolderMeta {
     };
   }
 }
+
+globalThis.CoreFolderMeta = CoreFolderMeta;
+if (typeof window !== "undefined") window.CoreFolderMeta = CoreFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = CoreFolderMeta;

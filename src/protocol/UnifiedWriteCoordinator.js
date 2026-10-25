@@ -296,3 +296,12 @@ It abstracts write, read, and delete operations across different backends-includ
       ].join('\n\n');
     }
 }
+
+globalThis.UnifiedWriteCoordinator = UnifiedWriteCoordinator;
+if (typeof window !== "undefined") window.UnifiedWriteCoordinator = UnifiedWriteCoordinator;
+if (typeof module !== "undefined" && module.exports) module.exports = UnifiedWriteCoordinator;
+
+
+globalThis.body = body;
+if (typeof window !== "undefined") window.body = body;
+if (typeof module !== "undefined" && module.exports) module.exports = body;

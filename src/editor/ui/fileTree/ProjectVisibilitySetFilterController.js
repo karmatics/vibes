@@ -733,3 +733,7 @@ class ProjectVisibilitySetFilterController {
   }
 
 }
+
+globalThis.ProjectVisibilitySetFilterController = ProjectVisibilitySetFilterController;
+if (typeof window !== "undefined") window.ProjectVisibilitySetFilterController = ProjectVisibilitySetFilterController;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectVisibilitySetFilterController;

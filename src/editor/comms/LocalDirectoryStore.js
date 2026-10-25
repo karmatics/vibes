@@ -519,3 +519,7 @@ Every \`set\` operation:
 LocalDirectoryStore is the local-disk gateway for the Vibes browser-based workspace. It utilizes the W3C File System Access API (\`showDirectoryPicker\`) to obtain a persistent, secure directory handle from the operating system, allowing the browser to perform direct read and write actions on local project folders.`;
   }
 }
+
+globalThis.LocalDirectoryStore = LocalDirectoryStore;
+if (typeof window !== "undefined") window.LocalDirectoryStore = LocalDirectoryStore;
+if (typeof module !== "undefined" && module.exports) module.exports = LocalDirectoryStore;

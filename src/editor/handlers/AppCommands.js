@@ -2507,3 +2507,38 @@ class AppCommands {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.AppCommands = AppCommands;
+if (typeof window !== "undefined") window.AppCommands = AppCommands;
+if (typeof module !== "undefined" && module.exports) module.exports = AppCommands;
+
+
+globalThis.VisibilitySetsCapsule = VisibilitySetsCapsule;
+if (typeof window !== "undefined") window.VisibilitySetsCapsule = VisibilitySetsCapsule;
+if (typeof module !== "undefined" && module.exports) module.exports = VisibilitySetsCapsule;
+
+
+globalThis.Temp = Temp;
+if (typeof window !== "undefined") window.Temp = Temp;
+if (typeof module !== "undefined" && module.exports) module.exports = Temp;
+
+
+globalThis.$ = $;
+if (typeof window !== "undefined") window.$ = $;
+if (typeof module !== "undefined" && module.exports) module.exports = $;
+
+
+globalThis.prototypes = prototypes;
+if (typeof window !== "undefined") window.prototypes = prototypes;
+if (typeof module !== "undefined" && module.exports) module.exports = prototypes;
+
+
+globalThis.names = names;
+if (typeof window !== "undefined") window.names = names;
+if (typeof module !== "undefined" && module.exports) module.exports = names;
+
+
+globalThis.files = files;
+if (typeof window !== "undefined") window.files = files;
+if (typeof module !== "undefined" && module.exports) module.exports = files;

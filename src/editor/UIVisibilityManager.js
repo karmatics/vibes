@@ -204,3 +204,13 @@ It prevents layout thrashing by funneling multiple resize, scroll, and animation
   
 }
 
+
+
+globalThis.UIVisibilityManager = UIVisibilityManager;
+if (typeof window !== "undefined") window.UIVisibilityManager = UIVisibilityManager;
+if (typeof module !== "undefined" && module.exports) module.exports = UIVisibilityManager;
+
+
+globalThis.broadcasts = broadcasts;
+if (typeof window !== "undefined") window.broadcasts = broadcasts;
+if (typeof module !== "undefined" && module.exports) module.exports = broadcasts;

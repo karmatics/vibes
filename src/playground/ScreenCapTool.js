@@ -1121,3 +1121,18 @@ class ScreenCapTool {
     }
 }
 
+
+
+globalThis.ScreenCapTool = ScreenCapTool;
+if (typeof window !== "undefined") window.ScreenCapTool = ScreenCapTool;
+if (typeof module !== "undefined" && module.exports) module.exports = ScreenCapTool;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;
+
+
+globalThis.ProjectCatalogCapsule = ProjectCatalogCapsule;
+if (typeof window !== "undefined") window.ProjectCatalogCapsule = ProjectCatalogCapsule;
+if (typeof module !== "undefined" && module.exports) module.exports = ProjectCatalogCapsule;

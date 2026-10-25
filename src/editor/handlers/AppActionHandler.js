@@ -2107,3 +2107,12 @@ class AppActionHandler {
       }
     }
 }
+
+globalThis.AppActionHandler = AppActionHandler;
+if (typeof window !== "undefined") window.AppActionHandler = AppActionHandler;
+if (typeof module !== "undefined" && module.exports) module.exports = AppActionHandler;
+
+
+globalThis.is = is;
+if (typeof window !== "undefined") window.is = is;
+if (typeof module !== "undefined" && module.exports) module.exports = is;

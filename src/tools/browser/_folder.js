@@ -12,3 +12,7 @@ class BrowserFolderMeta {
     };
   }
 }
+
+globalThis.BrowserFolderMeta = BrowserFolderMeta;
+if (typeof window !== "undefined") window.BrowserFolderMeta = BrowserFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = BrowserFolderMeta;

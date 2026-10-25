@@ -12,3 +12,7 @@ class RunnerFolderMeta {
     };
   }
 }
+
+globalThis.RunnerFolderMeta = RunnerFolderMeta;
+if (typeof window !== "undefined") window.RunnerFolderMeta = RunnerFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = RunnerFolderMeta;

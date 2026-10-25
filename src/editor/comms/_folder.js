@@ -14,3 +14,7 @@ class CommsFolderMeta {
     };
   }
 }
+
+globalThis.CommsFolderMeta = CommsFolderMeta;
+if (typeof window !== "undefined") window.CommsFolderMeta = CommsFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = CommsFolderMeta;

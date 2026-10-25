@@ -100,3 +100,7 @@ It provides the primary parsing layer for building project indexes from raw \`in
 HTMLDependencyScanner is a static helper that parses HTML files to extract and resolve script, style, and asset dependencies. It provides the primary parsing layer for building project indexes from raw \`index.html\` entry points, extracting relative and absolute references and resolving them to Golden Paths.`;
     }
 }
+
+globalThis.HTMLDependencyScanner = HTMLDependencyScanner;
+if (typeof window !== "undefined") window.HTMLDependencyScanner = HTMLDependencyScanner;
+if (typeof module !== "undefined" && module.exports) module.exports = HTMLDependencyScanner;

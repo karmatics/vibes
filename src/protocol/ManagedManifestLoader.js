@@ -116,3 +116,8 @@ class ManagedManifestLoader {
   "deps": []
 }
 recursi-meta */
+
+
+globalThis.ManagedManifestLoader = ManagedManifestLoader;
+if (typeof window !== "undefined") window.ManagedManifestLoader = ManagedManifestLoader;
+if (typeof module !== "undefined" && module.exports) module.exports = ManagedManifestLoader;

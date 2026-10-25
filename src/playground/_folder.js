@@ -17,3 +17,7 @@ class PlaygroundFolderMeta {
     };
   }
 }
+
+globalThis.PlaygroundFolderMeta = PlaygroundFolderMeta;
+if (typeof window !== "undefined") window.PlaygroundFolderMeta = PlaygroundFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = PlaygroundFolderMeta;

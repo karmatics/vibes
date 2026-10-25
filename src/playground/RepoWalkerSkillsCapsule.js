@@ -28,3 +28,13 @@ class RepoWalkerSkillsCapsule {
       ].join('\n\n');
     }
 }
+
+
+globalThis.RepoWalkerSkillsCapsule = RepoWalkerSkillsCapsule;
+if (typeof window !== "undefined") window.RepoWalkerSkillsCapsule = RepoWalkerSkillsCapsule;
+if (typeof module !== "undefined" && module.exports) module.exports = RepoWalkerSkillsCapsule;
+
+
+globalThis.conformance = conformance;
+if (typeof window !== "undefined") window.conformance = conformance;
+if (typeof module !== "undefined" && module.exports) module.exports = conformance;

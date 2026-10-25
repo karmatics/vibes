@@ -15,3 +15,7 @@ class HandlersFolderMeta {
     };
   }
 }
+
+globalThis.HandlersFolderMeta = HandlersFolderMeta;
+if (typeof window !== "undefined") window.HandlersFolderMeta = HandlersFolderMeta;
+if (typeof module !== "undefined" && module.exports) module.exports = HandlersFolderMeta;

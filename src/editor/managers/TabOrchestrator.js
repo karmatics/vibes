@@ -326,3 +326,8 @@ It prevents disparate parts of the app from spawning duplicate controllers, ensu
   
 }
 
+
+
+globalThis.TabOrchestrator = TabOrchestrator;
+if (typeof window !== "undefined") window.TabOrchestrator = TabOrchestrator;
+if (typeof module !== "undefined" && module.exports) module.exports = TabOrchestrator;
